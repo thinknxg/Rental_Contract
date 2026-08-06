@@ -1,0 +1,86 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="rental-catalogue">
+	<h1 class="mb-2">{{ title }}</h1>
+	{% if settings.portal_intro %}
+	<p class="text-muted mb-4">{{ settings.portal_intro }}</p>
+	{% endif %}
+
+	<div id="rental-alert" class="alert" style="display:none"></div>
+
+	<form class="rental-toolbar" method="get">
+		<div class="row g-2 align-items-end">
+			<div class="col-md-3">
+				<label class="form-label small text-muted">Category</label>
+				<select class="form-select" name="category">
+					<option value="">All categories</option>
+					{% for row in categories %}
+					<option value="{{ row.name }}"
+						{% if selected.category == row.name %}selected{% endif %}>{{ row.name }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label class="form-label small text-muted">Search</label>
+				<input type="text" class="form-control" name="search"
+					value="{{ selected.search or '' }}" placeholder="Name or model">
+			</div>
+			<div class="col-md-2">
+				<label class="form-label small text-muted">Available from</label>
+				<input type="date" class="form-control" name="from_date"
+					value="{{ selected.from_date or '' }}">
+			</div>
+			<div class="col-md-2">
+				<label class="form-label small text-muted">until</label>
+				<input type="date" class="form-control" name="to_date"
+					value="{{ selected.to_date or '' }}">
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary w-100" type="submit">Search</button>
+			</div>
+		</div>
+	</form>
+
+	{% if equipment %}
+	<div class="rental-grid">
+		{% for row in equipment %}
+		<div class="rental-card">
+			<a href="/{{ row.route or 'rentals' }}" class="rental-card-media"
+				{% if row.image %}style="background-image:url('{{ row.image }}')"{% endif %}>
+				{% if not row.image %}&#9881;{% endif %}
+			</a>
+			<div class="rental-card-body">
+				<div class="rental-card-title">
+					<a href="/{{ row.route or 'rentals' }}">{{ row.equipment_name }}</a>
+				</div>
+				<div class="rental-card-meta">
+					{{ row.equipment_category }}{% if row.model %} &middot; {{ row.model }}{% endif %}
+				</div>
+				{% if row.short_description %}
+				<div class="rental-card-meta mt-2">{{ row.short_description }}</div>
+				{% endif %}
+				<div class="rental-rate">
+					{% if show_rates and row.daily_rate %}
+						{{ frappe.utils.fmt_money(row.daily_rate, currency=row.currency) }}
+						<small>/ day</small>
+					{% elif show_rates and row.monthly_rate %}
+						{{ frappe.utils.fmt_money(row.monthly_rate, currency=row.currency) }}
+						<small>/ month</small>
+					{% else %}
+						<small>Request a quote</small>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% else %}
+	<div class="rental-empty">
+		<p>No equipment matches your search.</p>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,180 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "rental_contract",
+  "customer",
+  "company",
+  "cb1",
+  "return_datetime",
+  "close_contract",
+  "received_by",
+  "items_sec",
+  "items",
+  "charges_sec",
+  "total_damage_charges",
+  "add_charges_to_contract",
+  "cb2",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "RRN-.YY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RRN-.YY.-.#####"
+  },
+  {
+   "fieldname": "rental_contract",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Rental Contract",
+   "options": "Rental Contract",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "rental_contract.customer",
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "return_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Return Date/Time",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Tick when every item on the contract has been returned",
+   "fieldname": "close_contract",
+   "fieldtype": "Check",
+   "label": "Close Contract"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Data",
+   "label": "Received By"
+  },
+  {
+   "fieldname": "items_sec",
+   "fieldtype": "Section Break",
+   "label": "Returned Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Rental Return Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "charges_sec",
+   "fieldtype": "Section Break",
+   "label": "Charges"
+  },
+  {
+   "fieldname": "total_damage_charges",
+   "fieldtype": "Currency",
+   "label": "Total Damage / Extra Charges",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "add_charges_to_contract",
+   "fieldtype": "Check",
+   "label": "Add Charges to Contract"
+  },
+  {
+   "fieldname": "cb2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rental Return Note",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Return Note",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

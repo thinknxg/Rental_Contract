@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:charge_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "charge_name",
+  "item",
+  "income_account",
+  "cb1",
+  "charge_basis",
+  "default_amount",
+  "taxable",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "charge_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Charge Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Billing Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Fixed",
+   "fieldname": "charge_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Charge Basis",
+   "options": "Fixed\nPer Unit\nPercent of Rental"
+  },
+  {
+   "fieldname": "default_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Default Amount",
+   "options": "currency"
+  },
+  {
+   "default": "1",
+   "fieldname": "taxable",
+   "fieldtype": "Check",
+   "label": "Taxable"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Charge Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "charge_name",
+ "track_changes": 1
+}

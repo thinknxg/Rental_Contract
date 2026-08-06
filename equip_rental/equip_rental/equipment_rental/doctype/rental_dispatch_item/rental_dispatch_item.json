@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "equipment",
+  "equipment_name",
+  "condition_out",
+  "meter_out",
+  "accessories_checked",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "equipment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Equipment",
+   "options": "Rental Equipment",
+   "reqd": 1
+  },
+  {
+   "columns": 3,
+   "fetch_from": "equipment.equipment_name",
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "default": "Good",
+   "fieldname": "condition_out",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Condition",
+   "options": "New\nGood\nFair\nDamaged\nNot Working"
+  },
+  {
+   "columns": 2,
+   "fieldname": "meter_out",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Meter Out"
+  },
+  {
+   "default": "1",
+   "fieldname": "accessories_checked",
+   "fieldtype": "Check",
+   "label": "Accessories OK"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Dispatch Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

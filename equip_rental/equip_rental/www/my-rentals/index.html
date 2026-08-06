@@ -1,0 +1,96 @@
+{% extends "templates/web.html" %}
+
+{% block title %}My Rentals{% endblock %}
+
+{% block page_content %}
+<h1 class="mb-4">My Rentals</h1>
+<div id="rental-alert" class="alert" style="display:none"></div>
+
+{% if not customer %}
+<div class="rental-empty">
+	<p>Your login is not linked to a customer account yet. Please contact us.</p>
+</div>
+{% else %}
+
+<h4>Contracts</h4>
+{% if contracts %}
+{% for contract in contracts %}
+<div class="rental-toolbar">
+	<div class="d-flex justify-content-between align-items-start flex-wrap">
+		<div>
+			<div class="fw-bold">{{ contract.name }}</div>
+			<div class="text-muted small">
+				{{ frappe.utils.formatdate(contract.start_date) }} &rarr;
+				{{ frappe.utils.formatdate(contract.actual_end_date or contract.expected_end_date) }}
+				&middot; billed {{ contract.billing_cycle }}
+			</div>
+		</div>
+		<div class="text-end">
+			<span class="rental-chip {{ 'available' if contract.status == 'Active'
+				else ('maintenance' if contract.status == 'Overdue' else 'on-rent') }}">
+				{{ contract.status }}
+			</span>
+			<div class="small text-muted mt-1">
+				Billed {{ frappe.utils.fmt_money(contract.total_billed, currency=contract.currency) }}
+			</div>
+			{% if allow_off_hire and contract.status in ("Active", "Overdue") %}
+			<button class="btn btn-sm btn-outline-secondary mt-2"
+				data-rental-action="off-hire" data-contract="{{ contract.name }}">
+				Request collection
+			</button>
+			{% endif %}
+		</div>
+	</div>
+
+	<table class="table table-sm mt-3 mb-0">
+		<thead>
+			<tr class="text-muted small">
+				<th>Equipment</th><th>Basis</th><th>Rate</th><th>On hire from</th><th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in contract.items %}
+			<tr>
+				<td>{{ item.equipment_name or item.equipment }}</td>
+				<td>{{ item.rate_basis }}</td>
+				<td>{{ frappe.utils.fmt_money(item.rate, currency=contract.currency) }}</td>
+				<td>{{ frappe.utils.formatdate(item.charge_from) }}</td>
+				<td>{{ item.item_status }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endfor %}
+{% else %}
+<div class="rental-empty"><p>No rental contracts yet.</p></div>
+{% endif %}
+
+<h4 class="mt-5">Invoices</h4>
+{% if invoices %}
+<table class="table">
+	<thead>
+		<tr class="text-muted small">
+			<th>Invoice</th><th>Date</th><th>Contract</th>
+			<th class="text-end">Total</th><th class="text-end">Outstanding</th><th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for invoice in invoices %}
+		<tr>
+			<td><a href="/invoices/{{ invoice.name }}">{{ invoice.name }}</a></td>
+			<td>{{ frappe.utils.formatdate(invoice.posting_date) }}</td>
+			<td>{{ invoice.rental_contract }}</td>
+			<td class="text-end">{{ frappe.utils.fmt_money(invoice.grand_total, currency=invoice.currency) }}</td>
+			<td class="text-end">{{ frappe.utils.fmt_money(invoice.outstanding_amount, currency=invoice.currency) }}</td>
+			<td>{{ invoice.status }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<div class="rental-empty"><p>No invoices yet.</p></div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

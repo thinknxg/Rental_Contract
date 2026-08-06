@@ -1,0 +1,201 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "equipment",
+  "equipment_name",
+  "equipment_category",
+  "item",
+  "qty",
+  "rate_basis",
+  "rate",
+  "min_billable_units",
+  "discount_percent",
+  "cbi1",
+  "charge_from",
+  "charge_upto",
+  "off_rent_date",
+  "item_status",
+  "last_billed_upto",
+  "billed_units",
+  "estimated_amount",
+  "billed_amount",
+  "meter_out",
+  "meter_in",
+  "description"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "equipment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Equipment",
+   "options": "Rental Equipment",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fetch_from": "equipment.equipment_name",
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Equipment Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "equipment_category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Equipment Category"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Billing Item",
+   "options": "Item"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qty"
+  },
+  {
+   "columns": 1,
+   "default": "Day",
+   "fieldname": "rate_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Basis",
+   "options": "Hour\nDay\nWeek\nMonth",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_billable_units",
+   "fieldtype": "Float",
+   "label": "Min Billable Units"
+  },
+  {
+   "fieldname": "discount_percent",
+   "fieldtype": "Float",
+   "label": "Discount (%)"
+  },
+  {
+   "fieldname": "cbi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "charge_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Charge From",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "charge_upto",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Charge Upto"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "off_rent_date",
+   "fieldtype": "Date",
+   "label": "Off-Rent Date",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "columns": 1,
+   "default": "Pending Dispatch",
+   "fieldname": "item_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending Dispatch\nOn Rent\nReturned\nCancelled",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "last_billed_upto",
+   "fieldtype": "Date",
+   "label": "Last Billed Upto",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "billed_units",
+   "fieldtype": "Float",
+   "label": "Billed Units",
+   "read_only": 1
+  },
+  {
+   "fieldname": "estimated_amount",
+   "fieldtype": "Currency",
+   "label": "Estimated Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "billed_amount",
+   "fieldtype": "Currency",
+   "label": "Billed Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "meter_out",
+   "fieldtype": "Float",
+   "label": "Meter Out",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "meter_in",
+   "fieldtype": "Float",
+   "label": "Meter In",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Contract Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

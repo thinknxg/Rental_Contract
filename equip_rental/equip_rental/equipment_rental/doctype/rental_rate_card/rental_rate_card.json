@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:rate_card_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "rate_card_name",
+  "company",
+  "currency",
+  "cb1",
+  "customer_group",
+  "price_list",
+  "valid_from",
+  "valid_upto",
+  "is_default",
+  "rates_sec",
+  "rates",
+  "extras_sec",
+  "delivery_charge",
+  "collection_charge",
+  "cb2",
+  "security_deposit",
+  "damage_waiver_percent"
+ ],
+ "fields": [
+  {
+   "fieldname": "rate_card_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rate Card Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_group",
+   "fieldtype": "Link",
+   "label": "Applies to Customer Group",
+   "options": "Customer Group"
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Applies to Price List",
+   "options": "Price List"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From"
+  },
+  {
+   "fieldname": "valid_upto",
+   "fieldtype": "Date",
+   "label": "Valid Upto"
+  },
+  {
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "fieldname": "rates_sec",
+   "fieldtype": "Section Break",
+   "label": "Rates"
+  },
+  {
+   "fieldname": "rates",
+   "fieldtype": "Table",
+   "label": "Rates",
+   "options": "Rental Rate Card Line",
+   "reqd": 1
+  },
+  {
+   "fieldname": "extras_sec",
+   "fieldtype": "Section Break",
+   "label": "Extras"
+  },
+  {
+   "fieldname": "delivery_charge",
+   "fieldtype": "Currency",
+   "label": "Delivery Charge",
+   "options": "currency"
+  },
+  {
+   "fieldname": "collection_charge",
+   "fieldtype": "Currency",
+   "label": "Collection Charge",
+   "options": "currency"
+  },
+  {
+   "fieldname": "cb2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Currency",
+   "label": "Security Deposit",
+   "options": "currency"
+  },
+  {
+   "fieldname": "damage_waiver_percent",
+   "fieldtype": "Float",
+   "label": "Damage Waiver (%)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Rate Card",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "rate_card_name",
+ "track_changes": 1
+}

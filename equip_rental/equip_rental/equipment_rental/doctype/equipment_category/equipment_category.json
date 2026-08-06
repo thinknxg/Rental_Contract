@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:category_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "category_name",
+  "parent_category",
+  "default_rate_card",
+  "default_item",
+  "cb1",
+  "meter_type",
+  "maintenance_interval",
+  "maintenance_interval_days",
+  "requires_operator",
+  "desc_sec",
+  "description",
+  "image"
+ ],
+ "fields": [
+  {
+   "fieldname": "category_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Category Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "parent_category",
+   "fieldtype": "Link",
+   "label": "Parent Category",
+   "options": "Equipment Category"
+  },
+  {
+   "fieldname": "default_rate_card",
+   "fieldtype": "Link",
+   "label": "Default Rate Card",
+   "options": "Rental Rate Card"
+  },
+  {
+   "description": "ERPNext Item used on invoices when the equipment has no item of its own",
+   "fieldname": "default_item",
+   "fieldtype": "Link",
+   "label": "Default Billing Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "None",
+   "fieldname": "meter_type",
+   "fieldtype": "Select",
+   "label": "Meter Type",
+   "options": "None\nHours\nKilometers"
+  },
+  {
+   "fieldname": "maintenance_interval",
+   "fieldtype": "Int",
+   "label": "Maintenance Interval (Meter Units)"
+  },
+  {
+   "fieldname": "maintenance_interval_days",
+   "fieldtype": "Int",
+   "label": "Maintenance Interval (Days)"
+  },
+  {
+   "fieldname": "requires_operator",
+   "fieldtype": "Check",
+   "label": "Requires Operator"
+  },
+  {
+   "fieldname": "desc_sec",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Equipment Category",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "category_name",
+ "track_changes": 1
+}

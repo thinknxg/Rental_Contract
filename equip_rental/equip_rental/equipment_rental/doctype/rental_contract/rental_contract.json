@@ -1,0 +1,428 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_sec",
+  "naming_series",
+  "contract_type",
+  "customer",
+  "customer_name",
+  "department",
+  "project",
+  "cost_center",
+  "company",
+  "cb1",
+  "contract_date",
+  "start_date",
+  "expected_end_date",
+  "actual_end_date",
+  "is_open_ended",
+  "status",
+  "reservation",
+  "billing_sec",
+  "billing_cycle",
+  "price_list",
+  "currency",
+  "taxes_and_charges",
+  "cb2",
+  "next_billing_date",
+  "security_deposit",
+  "deposit_received",
+  "auto_billing",
+  "items_sec",
+  "items",
+  "charges_sec",
+  "charges",
+  "totals_sec",
+  "estimated_rental_amount",
+  "total_charges",
+  "cb3",
+  "total_billed",
+  "estimated_total",
+  "site_sec",
+  "site_address",
+  "contact_person",
+  "cb4",
+  "contact_mobile",
+  "contact_email",
+  "invoices_sec",
+  "invoices",
+  "terms_sec",
+  "terms_template",
+  "terms",
+  "amend_sec",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_sec",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "RC-.YY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RC-.YY.-.#####"
+  },
+  {
+   "default": "Customer Rental",
+   "fieldname": "contract_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Contract Type",
+   "options": "Customer Rental\nInternal Use",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.contract_type=='Customer Rental'",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Customer",
+   "mandatory_depends_on": "eval:doc.contract_type=='Customer Rental'",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.contract_type=='Internal Use'",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Using Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "contract_date",
+   "fieldtype": "Date",
+   "label": "Contract Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected End Date",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "actual_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "is_open_ended",
+   "fieldtype": "Check",
+   "label": "Open Ended"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nScheduled\nActive\nOverdue\nClosed\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reservation",
+   "fieldtype": "Link",
+   "label": "Reservation",
+   "options": "Rental Reservation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "billing_sec",
+   "fieldtype": "Section Break",
+   "label": "Billing"
+  },
+  {
+   "default": "Monthly",
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "Billing Cycle",
+   "options": "Monthly\nWeekly\nDaily\nOn Return",
+   "reqd": 1
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Price List",
+   "options": "Price List"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.contract_type=='Customer Rental'",
+   "fieldname": "taxes_and_charges",
+   "fieldtype": "Link",
+   "label": "Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "cb2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "next_billing_date",
+   "fieldtype": "Date",
+   "label": "Next Billing Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Currency",
+   "label": "Security Deposit",
+   "options": "currency"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "deposit_received",
+   "fieldtype": "Check",
+   "label": "Deposit Received"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "1",
+   "fieldname": "auto_billing",
+   "fieldtype": "Check",
+   "label": "Include in Automatic Billing"
+  },
+  {
+   "fieldname": "items_sec",
+   "fieldtype": "Section Break",
+   "label": "Equipment"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Equipment",
+   "options": "Rental Contract Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "charges_sec",
+   "fieldtype": "Section Break",
+   "label": "Additional Charges"
+  },
+  {
+   "fieldname": "charges",
+   "fieldtype": "Table",
+   "label": "Additional Charges",
+   "options": "Rental Contract Charge"
+  },
+  {
+   "fieldname": "totals_sec",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "estimated_rental_amount",
+   "fieldtype": "Currency",
+   "label": "Estimated Rental Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_charges",
+   "fieldtype": "Currency",
+   "label": "Total Additional Charges",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_billed",
+   "fieldtype": "Currency",
+   "label": "Total Billed",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "estimated_total",
+   "fieldtype": "Currency",
+   "label": "Estimated Total",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "site_sec",
+   "fieldtype": "Section Break",
+   "label": "Site & Contact"
+  },
+  {
+   "fieldname": "site_address",
+   "fieldtype": "Small Text",
+   "label": "Site Address"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "cb4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "label": "Contact Mobile"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email"
+  },
+  {
+   "fieldname": "invoices_sec",
+   "fieldtype": "Section Break",
+   "label": "Invoices"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "invoices",
+   "fieldtype": "Table",
+   "label": "Invoices",
+   "options": "Rental Contract Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "terms_sec",
+   "fieldtype": "Section Break",
+   "label": "Terms"
+  },
+  {
+   "fieldname": "terms_template",
+   "fieldtype": "Link",
+   "label": "Terms Template",
+   "options": "Terms and Conditions"
+  },
+  {
+   "fieldname": "terms",
+   "fieldtype": "Text Editor",
+   "label": "Terms"
+  },
+  {
+   "fieldname": "amend_sec",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rental Contract",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Contract",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "search_fields": "customer,start_date,expected_end_date",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}

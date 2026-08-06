@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "rate_basis",
+  "min_units",
+  "rate",
+  "min_billable_units",
+  "discount_percent"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "rate_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Rate Basis",
+   "options": "Hour\nDay\nWeek\nMonth",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "default": "1",
+   "fieldname": "min_units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Min Units"
+  },
+  {
+   "columns": 2,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "default": "1",
+   "description": "Charge at least this many units even if used for less",
+   "fieldname": "min_billable_units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Min Billable Units"
+  },
+  {
+   "columns": 1,
+   "fieldname": "discount_percent",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Discount (%)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Rental Rate Card Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}
