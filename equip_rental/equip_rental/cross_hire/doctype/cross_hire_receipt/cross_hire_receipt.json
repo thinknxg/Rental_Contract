@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "cross_hire_order",
+  "supplier",
+  "company",
+  "chr_cb1",
+  "receipt_datetime",
+  "vendor_delivery_note",
+  "location",
+  "received_by",
+  "chr_items_sec",
+  "items",
+  "chr_other_sec",
+  "create_fleet_records",
+  "condition_report",
+  "chr_other_cb",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "CHR-.YY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CHR-.YY.-.#####"
+  },
+  {
+   "fieldname": "cross_hire_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Cross Hire Order",
+   "options": "Cross Hire Order",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "cross_hire_order.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vendor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chr_cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "description": "The vendor's hire clock starts here, not at the order date",
+   "fieldname": "receipt_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "On-Hire Date/Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vendor_delivery_note",
+   "fieldtype": "Data",
+   "label": "Vendor Delivery Note No"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Received At",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Data",
+   "label": "Received By"
+  },
+  {
+   "fieldname": "chr_items_sec",
+   "fieldtype": "Section Break",
+   "label": "Received Equipment"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Cross Hire Receipt Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chr_other_sec",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "description": "Creates a Rental Equipment record per unit so it can be re-hired or issued to a project",
+   "fieldname": "create_fleet_records",
+   "fieldtype": "Check",
+   "label": "Create Fleet Records"
+  },
+  {
+   "fieldname": "condition_report",
+   "fieldtype": "Attach",
+   "label": "Condition Report / Photos"
+  },
+  {
+   "fieldname": "chr_other_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cross Hire Receipt",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Receipt",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

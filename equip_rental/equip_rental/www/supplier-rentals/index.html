@@ -1,0 +1,89 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Cross Hire Orders{% endblock %}
+
+{% block page_content %}
+<h1 class="mb-4">Cross Hire Orders</h1>
+
+{% if not supplier %}
+<div class="rental-empty">
+	<p>Your login is not linked to a supplier account yet. Please contact us.</p>
+</div>
+{% else %}
+
+{% if orders %}
+{% for order in orders %}
+<div class="rental-toolbar">
+	<div class="d-flex justify-content-between flex-wrap">
+		<div>
+			<div class="fw-bold">{{ order.name }}</div>
+			<div class="text-muted small">
+				{{ frappe.utils.formatdate(order.from_date) }} &rarr;
+				{{ frappe.utils.formatdate(order.expected_to_date) }}
+				{% if order.vendor_reference %}
+				&middot; your ref {{ order.vendor_reference }}
+				{% endif %}
+			</div>
+		</div>
+		<div class="text-end">
+			<span class="rental-chip on-rent">{{ order.status }}</span>
+			<div class="fw-bold mt-1">
+				{{ frappe.utils.fmt_money(order.estimated_total_cost, currency=order.currency) }}
+			</div>
+		</div>
+	</div>
+	<table class="table table-sm mt-3 mb-0">
+		<thead>
+			<tr class="text-muted small">
+				<th>Equipment</th><th>Plant No</th><th>On Hire</th><th>Off Hire</th>
+				<th>Status</th><th class="text-end">Rate</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in order.items %}
+			<tr>
+				<td>{{ item.description }}</td>
+				<td>{{ item.vendor_plant_no or "-" }}</td>
+				<td>{{ frappe.utils.formatdate(item.on_hire_date) or "-" }}</td>
+				<td>{{ frappe.utils.formatdate(item.actual_off_hire_date
+					or item.expected_off_hire_date) or "-" }}</td>
+				<td>{{ item.item_status }}</td>
+				<td class="text-end">
+					{{ frappe.utils.fmt_money(item.rate, currency=order.currency) }}
+					<small>/ {{ item.rate_basis|lower }}</small>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endfor %}
+{% else %}
+<div class="rental-empty"><p>No sub-rental orders yet.</p></div>
+{% endif %}
+
+<h4 class="mt-5">Your equipment with us</h4>
+{% if equipment %}
+<table class="table">
+	<thead>
+		<tr class="text-muted small">
+			<th>Equipment</th><th>Category</th><th>Status</th><th>Location</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for row in equipment %}
+		<tr>
+			<td>{{ row.equipment_name }}</td>
+			<td>{{ row.equipment_category }}</td>
+			<td>{{ row.status }}</td>
+			<td>{{ row.current_location or "-" }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<div class="rental-empty"><p>No equipment on hire to us right now.</p></div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,274 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "equipment_category",
+  "description",
+  "vendor_plant_no",
+  "qty",
+  "rate_basis",
+  "rate",
+  "min_hire_units",
+  "transport_in",
+  "transport_out",
+  "cbi1",
+  "expected_from_date",
+  "expected_off_hire_date",
+  "on_hire_date",
+  "off_hire_notice_date",
+  "actual_off_hire_date",
+  "vendor_off_hire_reference",
+  "item_status",
+  "chi_link_sec",
+  "rental_equipment",
+  "cross_hire_requisition",
+  "chi_link_cb",
+  "meter_in",
+  "meter_out",
+  "chi_cost_sec",
+  "expected_units",
+  "expected_amount",
+  "accrued_amount",
+  "chi_cost_cb",
+  "invoiced_upto",
+  "invoiced_amount",
+  "damage_charged"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "equipment_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Equipment Category",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "columns": 1,
+   "fieldname": "vendor_plant_no",
+   "fieldtype": "Data",
+   "label": "Vendor Plant No"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qty"
+  },
+  {
+   "columns": 1,
+   "default": "Day",
+   "fieldname": "rate_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Basis",
+   "options": "Hour\nDay\nWeek\nMonth",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Vendor Rate",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_hire_units",
+   "fieldtype": "Float",
+   "label": "Min Hire Units"
+  },
+  {
+   "fieldname": "transport_in",
+   "fieldtype": "Currency",
+   "label": "Transport In",
+   "options": "currency"
+  },
+  {
+   "fieldname": "transport_out",
+   "fieldtype": "Currency",
+   "label": "Transport Out",
+   "options": "currency"
+  },
+  {
+   "fieldname": "cbi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "expected_from_date",
+   "fieldtype": "Date",
+   "label": "Expected On-Hire",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "expected_off_hire_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected Off-Hire"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "on_hire_date",
+   "fieldtype": "Date",
+   "label": "Actual On-Hire",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "off_hire_notice_date",
+   "fieldtype": "Date",
+   "label": "Off-Hire Notice Given",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "actual_off_hire_date",
+   "fieldtype": "Date",
+   "label": "Actual Off-Hire",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "vendor_off_hire_reference",
+   "fieldtype": "Data",
+   "label": "Vendor Off-Hire Ref",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "columns": 1,
+   "default": "Ordered",
+   "fieldname": "item_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Ordered\nOn Hire\nOff-Hire Requested\nOff Hired\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chi_link_sec",
+   "fieldtype": "Section Break",
+   "label": "Linkage"
+  },
+  {
+   "allow_on_submit": 1,
+   "description": "Fleet record created on receipt so the unit can be re-hired",
+   "fieldname": "rental_equipment",
+   "fieldtype": "Link",
+   "label": "Rental Equipment",
+   "options": "Rental Equipment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cross_hire_requisition",
+   "fieldtype": "Link",
+   "label": "Requisition",
+   "options": "Cross Hire Requisition",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chi_link_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "meter_in",
+   "fieldtype": "Float",
+   "label": "Meter at On-Hire",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "meter_out",
+   "fieldtype": "Float",
+   "label": "Meter at Off-Hire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chi_cost_sec",
+   "fieldtype": "Section Break",
+   "label": "Cost Tracking"
+  },
+  {
+   "fieldname": "expected_units",
+   "fieldtype": "Float",
+   "label": "Expected Units",
+   "read_only": 1
+  },
+  {
+   "fieldname": "expected_amount",
+   "fieldtype": "Currency",
+   "label": "Expected Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "accrued_amount",
+   "fieldtype": "Currency",
+   "label": "Accrued Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chi_cost_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "invoiced_upto",
+   "fieldtype": "Date",
+   "label": "Vendor Invoiced Upto",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "invoiced_amount",
+   "fieldtype": "Currency",
+   "label": "Vendor Invoiced",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "damage_charged",
+   "fieldtype": "Currency",
+   "label": "Damage Charged by Vendor",
+   "options": "currency",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Order Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

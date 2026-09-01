@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "order_row",
+  "equipment_category",
+  "description",
+  "vendor_plant_no",
+  "condition_in",
+  "meter_in",
+  "rental_equipment",
+  "accessories_complete",
+  "documents_received",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_row",
+   "fieldtype": "Data",
+   "label": "Order Row",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "equipment_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Equipment Category"
+  },
+  {
+   "columns": 2,
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "columns": 2,
+   "fieldname": "vendor_plant_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vendor Plant No"
+  },
+  {
+   "columns": 2,
+   "default": "Good",
+   "fieldname": "condition_in",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Condition",
+   "options": "New\nGood\nFair\nDamaged\nNot Working"
+  },
+  {
+   "columns": 1,
+   "fieldname": "meter_in",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Meter Reading"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "rental_equipment",
+   "fieldtype": "Link",
+   "label": "Fleet Record",
+   "options": "Rental Equipment",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "accessories_complete",
+   "fieldtype": "Check",
+   "label": "Accessories Complete"
+  },
+  {
+   "fieldname": "documents_received",
+   "fieldtype": "Check",
+   "label": "Test / Insurance Certificates Received"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks / Defects Noted"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Receipt Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

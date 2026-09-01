@@ -1,0 +1,355 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "defaults_sec",
+  "default_company",
+  "default_customer_price_list",
+  "rental_item_group",
+  "default_billing_cycle",
+  "default_rate_basis",
+  "cb_def",
+  "default_uom",
+  "default_taxes_and_charges",
+  "default_warehouse",
+  "book_internal_usage",
+  "billing_sec",
+  "grace_period_days",
+  "late_return_surcharge_percent",
+  "bill_calendar_month",
+  "auto_submit_invoices",
+  "cb_bill",
+  "internal_income_account",
+  "internal_expense_account",
+  "damage_charge_item",
+  "delivery_charge_item",
+  "cross_hire_sec",
+  "cross_hire_item",
+  "default_cross_hire_expense_account",
+  "default_off_hire_notice_days",
+  "idle_alert_days",
+  "cb_ch",
+  "default_cross_hire_markup_percent",
+  "require_vendor_offhire_reference",
+  "enable_cross_hire_accrual",
+  "block_overcommit_cross_hire",
+  "portal_sec",
+  "enable_public_catalogue",
+  "show_rates_on_portal",
+  "allow_portal_booking",
+  "allow_portal_off_hire",
+  "cb_portal",
+  "portal_heading",
+  "portal_intro",
+  "portal_enquiry_recipient",
+  "alerts_sec",
+  "document_expiry_reminder_days",
+  "return_due_reminder_days"
+ ],
+ "fields": [
+  {
+   "fieldname": "defaults_sec",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Default Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "default_customer_price_list",
+   "fieldtype": "Link",
+   "label": "Default Selling Price List",
+   "options": "Price List"
+  },
+  {
+   "description": "Item Group used when auto-creating rental service items",
+   "fieldname": "rental_item_group",
+   "fieldtype": "Link",
+   "label": "Rental Item Group",
+   "options": "Item Group"
+  },
+  {
+   "default": "Monthly",
+   "fieldname": "default_billing_cycle",
+   "fieldtype": "Select",
+   "label": "Default Billing Cycle",
+   "options": "Monthly\nWeekly\nDaily\nOn Return"
+  },
+  {
+   "default": "Day",
+   "fieldname": "default_rate_basis",
+   "fieldtype": "Select",
+   "label": "Default Rate Basis",
+   "options": "Hour\nDay\nWeek\nMonth"
+  },
+  {
+   "fieldname": "cb_def",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Day",
+   "fieldname": "default_uom",
+   "fieldtype": "Link",
+   "label": "Default UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "default_taxes_and_charges",
+   "fieldtype": "Link",
+   "label": "Default Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "default_warehouse",
+   "fieldtype": "Link",
+   "label": "Default Equipment Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "default": "0",
+   "description": "Create a Journal Entry recharging the using cost center for internal rentals",
+   "fieldname": "book_internal_usage",
+   "fieldtype": "Check",
+   "label": "Post Internal Usage to Accounts"
+  },
+  {
+   "fieldname": "billing_sec",
+   "fieldtype": "Section Break",
+   "label": "Billing Rules"
+  },
+  {
+   "default": "0",
+   "fieldname": "grace_period_days",
+   "fieldtype": "Int",
+   "label": "Grace Period (Days)"
+  },
+  {
+   "default": "0",
+   "fieldname": "late_return_surcharge_percent",
+   "fieldtype": "Float",
+   "label": "Late Return Surcharge (%)"
+  },
+  {
+   "default": "1",
+   "description": "Monthly contracts are billed on calendar month boundaries with pro-rata for part months",
+   "fieldname": "bill_calendar_month",
+   "fieldtype": "Check",
+   "label": "Bill Calendar Months"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_submit_invoices",
+   "fieldtype": "Check",
+   "label": "Auto Submit Generated Invoices"
+  },
+  {
+   "fieldname": "cb_bill",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "internal_income_account",
+   "fieldtype": "Link",
+   "label": "Internal Recharge Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "internal_expense_account",
+   "fieldtype": "Link",
+   "label": "Internal Recharge Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "damage_charge_item",
+   "fieldtype": "Link",
+   "label": "Damage Charge Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "delivery_charge_item",
+   "fieldtype": "Link",
+   "label": "Delivery Charge Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "cross_hire_sec",
+   "fieldtype": "Section Break",
+   "label": "Cross Hire"
+  },
+  {
+   "description": "Item used on vendor purchase invoices for hired-in equipment",
+   "fieldname": "cross_hire_item",
+   "fieldtype": "Link",
+   "label": "Cross Hire Purchase Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "default_cross_hire_expense_account",
+   "fieldtype": "Link",
+   "label": "Cross Hire Expense Account",
+   "options": "Account"
+  },
+  {
+   "default": "2",
+   "fieldname": "default_off_hire_notice_days",
+   "fieldtype": "Int",
+   "label": "Default Off-Hire Notice (Days)"
+  },
+  {
+   "default": "3",
+   "fieldname": "idle_alert_days",
+   "fieldtype": "Int",
+   "label": "Idle Cross Hire Alert After (Days)"
+  },
+  {
+   "fieldname": "cb_ch",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "25",
+   "fieldname": "default_cross_hire_markup_percent",
+   "fieldtype": "Float",
+   "label": "Default Re-Hire Markup (%)"
+  },
+  {
+   "default": "1",
+   "description": "Blocks off-hire without the vendor's reference number",
+   "fieldname": "require_vendor_offhire_reference",
+   "fieldtype": "Check",
+   "label": "Require Vendor Off-Hire Reference"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_cross_hire_accrual",
+   "fieldtype": "Check",
+   "label": "Accrue Cross Hire Cost Nightly"
+  },
+  {
+   "default": "1",
+   "fieldname": "block_overcommit_cross_hire",
+   "fieldtype": "Check",
+   "label": "Block Commitments Beyond Hire Window"
+  },
+  {
+   "fieldname": "portal_sec",
+   "fieldtype": "Section Break",
+   "label": "Portal"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_public_catalogue",
+   "fieldtype": "Check",
+   "label": "Enable Public Equipment Catalogue"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_rates_on_portal",
+   "fieldtype": "Check",
+   "label": "Show Rates on Public Catalogue"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_portal_booking",
+   "fieldtype": "Check",
+   "label": "Allow Booking Requests from Portal"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_portal_off_hire",
+   "fieldtype": "Check",
+   "label": "Allow Off-Hire Requests from Portal"
+  },
+  {
+   "fieldname": "cb_portal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Equipment for Hire",
+   "fieldname": "portal_heading",
+   "fieldtype": "Data",
+   "label": "Catalogue Heading"
+  },
+  {
+   "fieldname": "portal_intro",
+   "fieldtype": "Small Text",
+   "label": "Catalogue Intro"
+  },
+  {
+   "fieldname": "portal_enquiry_recipient",
+   "fieldtype": "Link",
+   "label": "Enquiry Notification Recipient",
+   "options": "User"
+  },
+  {
+   "fieldname": "alerts_sec",
+   "fieldtype": "Section Break",
+   "label": "Alerts"
+  },
+  {
+   "default": "30",
+   "fieldname": "document_expiry_reminder_days",
+   "fieldtype": "Int",
+   "label": "Document Expiry Reminder (Days)"
+  },
+  {
+   "default": "2",
+   "fieldname": "return_due_reminder_days",
+   "fieldtype": "Int",
+   "label": "Return Due Reminder (Days)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 1,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "Equipment Rental Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 0,
+   "write": 0
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

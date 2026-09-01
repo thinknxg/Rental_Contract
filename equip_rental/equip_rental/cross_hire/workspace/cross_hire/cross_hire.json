@@ -1,0 +1,228 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"chh1\", \"type\": \"header\", \"data\": {\"text\": \"<span class='h4'>Cross Hire</span>\", \"col\": 12}}, {\"id\": \"chp1\", \"type\": \"paragraph\", \"data\": {\"text\": \"Equipment hired in from vendors, then re-hired to customers or issued to our own projects.\", \"col\": 12}}, {\"id\": \"chc1\", \"type\": \"card\", \"data\": {\"card_name\": \"Sourcing\", \"col\": 4}}, {\"id\": \"chc2\", \"type\": \"card\", \"data\": {\"card_name\": \"Hire Cycle\", \"col\": 4}}, {\"id\": \"chc3\", \"type\": \"card\", \"data\": {\"card_name\": \"Cost Control\", \"col\": 4}}, {\"id\": \"chh2\", \"type\": \"header\", \"data\": {\"text\": \"<span class='h4'>Analysis</span>\", \"col\": 12}}, {\"id\": \"chc4\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}]",
+ "creation": "2026-01-01 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "handshake",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Cross Hire",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sourcing",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Requisition",
+   "link_count": 0,
+   "link_to": "Cross Hire Requisition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Quotation",
+   "link_count": 0,
+   "link_to": "Cross Hire Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Rate Agreement",
+   "link_count": 0,
+   "link_to": "Cross Hire Rate Agreement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Hire Cycle",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Order",
+   "link_count": 0,
+   "link_to": "Cross Hire Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Receipt",
+   "link_count": 0,
+   "link_to": "Cross Hire Receipt",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Off Hire Note",
+   "link_count": 0,
+   "link_to": "Cross Hire Off Hire Note",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cost Control",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Invoice Reconciliation",
+   "link_count": 0,
+   "link_to": "Cross Hire Invoice Reconciliation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cross Hire Damage Claim",
+   "link_count": 0,
+   "link_to": "Cross Hire Damage Claim",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Invoice",
+   "link_count": 0,
+   "link_to": "Purchase Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Cross Hire Register",
+   "link_count": 0,
+   "link_to": "Cross Hire Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Idle Cross Hired Equipment",
+   "link_count": 0,
+   "link_to": "Idle Cross Hired Equipment",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Cross Hire Margin",
+   "link_count": 0,
+   "link_to": "Cross Hire Margin",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Cross Hire Vendor Variance",
+   "link_count": 0,
+   "link_to": "Cross Hire Vendor Variance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 21.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Cross Hire Order",
+   "link_to": "Cross Hire Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "doc_view": "",
+   "is_query_report": 1,
+   "label": "Idle Cross Hired Equipment",
+   "link_to": "Idle Cross Hired Equipment",
+   "type": "Report"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "is_query_report": 1,
+   "label": "Cross Hire Margin",
+   "link_to": "Cross Hire Margin",
+   "type": "Report"
+  }
+ ],
+ "title": "Cross Hire"
+}

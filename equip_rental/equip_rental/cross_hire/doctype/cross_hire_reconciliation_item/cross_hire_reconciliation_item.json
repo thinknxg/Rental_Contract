@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "order_row",
+  "description",
+  "charge_from",
+  "charge_upto",
+  "expected_units",
+  "expected_amount",
+  "claimed_units",
+  "claimed_amount",
+  "variance",
+  "decision",
+  "approved_amount",
+  "variance_reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_row",
+   "fieldtype": "Data",
+   "label": "Order Row",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "columns": 1,
+   "fieldname": "charge_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "charge_upto",
+   "fieldtype": "Date",
+   "label": "Upto",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "expected_units",
+   "fieldtype": "Float",
+   "label": "Expected Units",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "expected_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Expected",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "claimed_units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Claimed Units"
+  },
+  {
+   "columns": 1,
+   "fieldname": "claimed_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Claimed",
+   "options": "currency"
+  },
+  {
+   "columns": 1,
+   "fieldname": "variance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Variance",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "Accept",
+   "fieldname": "decision",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Decision",
+   "options": "Accept\nAccept Expected\nDispute"
+  },
+  {
+   "fieldname": "approved_amount",
+   "fieldtype": "Currency",
+   "label": "Approved",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "variance_reason",
+   "fieldtype": "Small Text",
+   "label": "Variance Reason"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Reconciliation Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

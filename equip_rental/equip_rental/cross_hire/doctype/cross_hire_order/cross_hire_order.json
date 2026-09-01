@@ -1,0 +1,425 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "ch_basic",
+  "naming_series",
+  "supplier",
+  "supplier_name",
+  "rate_agreement",
+  "company",
+  "currency",
+  "ch_cb1",
+  "order_date",
+  "from_date",
+  "expected_to_date",
+  "is_open_ended",
+  "off_hire_notice_days",
+  "status",
+  "ch_use_sec",
+  "hire_purpose",
+  "rental_contract",
+  "customer",
+  "ch_use_cb",
+  "project",
+  "cost_center",
+  "back_to_back",
+  "ch_items_sec",
+  "items",
+  "ch_totals_sec",
+  "estimated_hire_cost",
+  "transport_cost",
+  "estimated_total_cost",
+  "ch_totals_cb",
+  "accrued_cost",
+  "invoiced_cost",
+  "security_deposit",
+  "ch_terms_sec",
+  "fuel_policy",
+  "damage_liability",
+  "insurance_by",
+  "operator_included",
+  "ch_terms_cb",
+  "idle_time_chargeable",
+  "damage_liability_cap",
+  "vendor_reference",
+  "delivery_address",
+  "ch_amend_sec",
+  "amendments",
+  "ch_terms2_sec",
+  "terms",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "ch_basic",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "CHO-.YY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CHO-.YY.-.#####"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Vendor",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Vendor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rate_agreement",
+   "fieldtype": "Link",
+   "label": "Rate Agreement",
+   "options": "Cross Hire Rate Agreement"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ch_cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "order_date",
+   "fieldtype": "Date",
+   "label": "Order Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Hire From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected Hire Upto"
+  },
+  {
+   "fieldname": "is_open_ended",
+   "fieldtype": "Check",
+   "label": "Open Ended Hire"
+  },
+  {
+   "default": "2",
+   "description": "Notice the vendor requires before collection - drives reminders",
+   "fieldname": "off_hire_notice_days",
+   "fieldtype": "Int",
+   "label": "Off-Hire Notice (Days)"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nOrdered\nOn Hire\nPartially Off-Hired\nOff Hired\nClosed\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ch_use_sec",
+   "fieldtype": "Section Break",
+   "label": "Deployment"
+  },
+  {
+   "default": "Re-Hire to Customer",
+   "fieldname": "hire_purpose",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Purpose",
+   "options": "Re-Hire to Customer\nInternal Project Use",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.hire_purpose=='Re-Hire to Customer'",
+   "description": "Customer contract this hire backs, when it is back-to-back",
+   "fieldname": "rental_contract",
+   "fieldtype": "Link",
+   "label": "Re-Hire Contract",
+   "options": "Rental Contract"
+  },
+  {
+   "depends_on": "eval:doc.hire_purpose=='Re-Hire to Customer'",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "ch_use_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "description": "Hire dates are driven by the customer contract and must not be exceeded",
+   "fieldname": "back_to_back",
+   "fieldtype": "Check",
+   "label": "Back-to-Back"
+  },
+  {
+   "fieldname": "ch_items_sec",
+   "fieldtype": "Section Break",
+   "label": "Hired-In Equipment"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Cross Hire Order Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ch_totals_sec",
+   "fieldtype": "Section Break",
+   "label": "Commercials"
+  },
+  {
+   "fieldname": "estimated_hire_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Hire Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transport_cost",
+   "fieldtype": "Currency",
+   "label": "Transport Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "estimated_total_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Total Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ch_totals_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "accrued_cost",
+   "fieldtype": "Currency",
+   "label": "Accrued Cost to Date",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "invoiced_cost",
+   "fieldtype": "Currency",
+   "label": "Vendor Invoiced",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Currency",
+   "label": "Deposit Paid",
+   "options": "currency"
+  },
+  {
+   "fieldname": "ch_terms_sec",
+   "fieldtype": "Section Break",
+   "label": "Hire Terms"
+  },
+  {
+   "default": "Hirer Supplies",
+   "fieldname": "fuel_policy",
+   "fieldtype": "Select",
+   "label": "Fuel Policy",
+   "options": "Vendor Supplies\nHirer Supplies\nFull to Full"
+  },
+  {
+   "default": "Hirer",
+   "fieldname": "damage_liability",
+   "fieldtype": "Select",
+   "label": "Damage Liability",
+   "options": "Hirer\nVendor\nShared"
+  },
+  {
+   "default": "Vendor",
+   "fieldname": "insurance_by",
+   "fieldtype": "Select",
+   "label": "Insurance By",
+   "options": "Hirer\nVendor"
+  },
+  {
+   "fieldname": "operator_included",
+   "fieldtype": "Check",
+   "label": "Operator Included"
+  },
+  {
+   "fieldname": "ch_terms_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "idle_time_chargeable",
+   "fieldtype": "Check",
+   "label": "Idle Time Chargeable"
+  },
+  {
+   "fieldname": "damage_liability_cap",
+   "fieldtype": "Currency",
+   "label": "Damage Liability Cap",
+   "options": "currency"
+  },
+  {
+   "fieldname": "vendor_reference",
+   "fieldtype": "Data",
+   "label": "Vendor Order Reference"
+  },
+  {
+   "fieldname": "delivery_address",
+   "fieldtype": "Small Text",
+   "label": "Delivery Address"
+  },
+  {
+   "fieldname": "ch_amend_sec",
+   "fieldtype": "Section Break",
+   "label": "Amendment History"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "amendments",
+   "fieldtype": "Table",
+   "label": "Amendments",
+   "options": "Cross Hire Amendment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ch_terms2_sec",
+   "fieldtype": "Section Break",
+   "label": "Terms"
+  },
+  {
+   "fieldname": "terms",
+   "fieldtype": "Text Editor",
+   "label": "Terms"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cross Hire Order",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "Supplier",
+   "share": 0,
+   "submit": 0,
+   "write": 0
+  }
+ ],
+ "quick_entry": 0,
+ "search_fields": "supplier,from_date,expected_to_date",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "supplier_name",
+ "track_changes": 1
+}

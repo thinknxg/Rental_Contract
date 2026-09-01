@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "allow_rename": 1,
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "equipment_category",
+  "description",
+  "rate_basis",
+  "rate",
+  "min_hire_units",
+  "transport_in",
+  "transport_out",
+  "operator_rate"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "equipment_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Equipment Category"
+  },
+  {
+   "columns": 3,
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "columns": 1,
+   "default": "Day",
+   "fieldname": "rate_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Basis",
+   "options": "Hour\nDay\nWeek\nMonth"
+  },
+  {
+   "columns": 2,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "default": "1",
+   "fieldname": "min_hire_units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Min Hire Units"
+  },
+  {
+   "fieldname": "transport_in",
+   "fieldtype": "Currency",
+   "label": "Transport In",
+   "options": "currency"
+  },
+  {
+   "fieldname": "transport_out",
+   "fieldtype": "Currency",
+   "label": "Transport Out",
+   "options": "currency"
+  },
+  {
+   "fieldname": "operator_rate",
+   "fieldtype": "Currency",
+   "label": "Operator Rate",
+   "options": "currency"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Rate Agreement Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

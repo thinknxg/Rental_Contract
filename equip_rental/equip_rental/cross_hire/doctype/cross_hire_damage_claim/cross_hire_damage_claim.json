@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "cross_hire_order",
+  "rental_equipment",
+  "supplier",
+  "company",
+  "chdc_cb1",
+  "claim_date",
+  "claimed_amount",
+  "accepted_amount",
+  "status",
+  "chdc_rec_sec",
+  "recoverable_from_customer",
+  "rental_contract",
+  "recovered_amount",
+  "chdc_rec_cb",
+  "sales_invoice",
+  "net_cost",
+  "chdc_det_sec",
+  "damage_description",
+  "evidence",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "CHDC-.YY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CHDC-.YY.-.#####"
+  },
+  {
+   "fieldname": "cross_hire_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Cross Hire Order",
+   "options": "Cross Hire Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rental_equipment",
+   "fieldtype": "Link",
+   "label": "Equipment",
+   "options": "Rental Equipment"
+  },
+  {
+   "fetch_from": "cross_hire_order.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vendor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chdc_cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "claim_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Claim Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "claimed_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount Claimed by Vendor",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accepted_amount",
+   "fieldtype": "Currency",
+   "label": "Amount Accepted",
+   "options": "currency"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nUnder Review\nAccepted\nRejected\nRecovered"
+  },
+  {
+   "fieldname": "chdc_rec_sec",
+   "fieldtype": "Section Break",
+   "label": "Recovery"
+  },
+  {
+   "fieldname": "recoverable_from_customer",
+   "fieldtype": "Check",
+   "label": "Recoverable from Customer"
+  },
+  {
+   "depends_on": "recoverable_from_customer",
+   "fieldname": "rental_contract",
+   "fieldtype": "Link",
+   "label": "Customer Contract",
+   "options": "Rental Contract"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "recovered_amount",
+   "fieldtype": "Currency",
+   "label": "Recovered from Customer",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chdc_rec_cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Recovery Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "net_cost",
+   "fieldtype": "Currency",
+   "label": "Net Cost to Us",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chdc_det_sec",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "damage_description",
+   "fieldtype": "Small Text",
+   "label": "Damage Description"
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Attach",
+   "label": "Evidence"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cross Hire Damage Claim",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cross Hire",
+ "name": "Cross Hire Damage Claim",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

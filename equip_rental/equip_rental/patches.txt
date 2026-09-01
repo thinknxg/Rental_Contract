@@ -1,0 +1,4 @@
+[pre_model_sync]
+
+[post_model_sync]
+equip_rental.patches.v1_1.migrate_sub_rental_to_cross_hire
