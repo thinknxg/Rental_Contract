@@ -1,0 +1,43 @@
+{
+ "actions": [],
+ "creation": "2026-09-02 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_no",
+  "description",
+  "column_break_dim",
+  "length",
+  "width",
+  "height",
+  "area",
+  "column_break_svc",
+  "service",
+  "qty"
+ ],
+ "fields": [
+  {"fieldname": "job_no", "fieldtype": "Data", "in_list_view": 1, "label": "Job No"},
+  {"fieldname": "description", "fieldtype": "Small Text", "in_list_view": 1, "label": "Description", "reqd": 1},
+  {"fieldname": "column_break_dim", "fieldtype": "Column Break"},
+  {"fieldname": "length", "fieldtype": "Float", "in_list_view": 1, "label": "Length"},
+  {"fieldname": "width", "fieldtype": "Float", "in_list_view": 1, "label": "Width"},
+  {"fieldname": "height", "fieldtype": "Float", "in_list_view": 1, "label": "Height"},
+  {"fieldname": "area", "fieldtype": "Float", "in_list_view": 1, "label": "Area", "read_only": 1},
+  {"fieldname": "column_break_svc", "fieldtype": "Column Break"},
+  {"fieldname": "service", "fieldtype": "Select", "in_list_view": 1, "label": "Service", "options": "Erection\nDismantle"},
+  {"fieldname": "qty", "fieldtype": "Float", "in_list_view": 1, "label": "Qty", "default": "1"}
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-02 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "SDV Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

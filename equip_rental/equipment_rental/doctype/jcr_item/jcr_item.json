@@ -1,0 +1,39 @@
+{
+ "actions": [],
+ "creation": "2026-09-02 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_description",
+  "column_break_qty",
+  "qty",
+  "unit",
+  "section_break_dates",
+  "erection_date",
+  "column_break_dis",
+  "dismantle_date"
+ ],
+ "fields": [
+  {"fieldname": "job_description", "fieldtype": "Small Text", "in_list_view": 1, "label": "Job Description", "reqd": 1},
+  {"fieldname": "column_break_qty", "fieldtype": "Column Break"},
+  {"fieldname": "qty", "fieldtype": "Float", "in_list_view": 1, "label": "Qty"},
+  {"fieldname": "unit", "fieldtype": "Data", "in_list_view": 1, "label": "Unit"},
+  {"fieldname": "section_break_dates", "fieldtype": "Section Break"},
+  {"fieldname": "erection_date", "fieldtype": "Date", "in_list_view": 1, "label": "Erection Date"},
+  {"fieldname": "column_break_dis", "fieldtype": "Column Break"},
+  {"fieldname": "dismantle_date", "fieldtype": "Date", "in_list_view": 1, "label": "Dismantle Date"}
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-02 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "JCR Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

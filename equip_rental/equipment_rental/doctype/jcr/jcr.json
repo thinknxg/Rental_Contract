@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-02 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "client_name",
+  "project_name",
+  "column_break_hdr",
+  "lpo_number",
+  "lpo_date",
+  "section_break_items",
+  "items",
+  "amended_from"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "JCR-.#####", "reqd": 1},
+  {"fieldname": "client_name", "fieldtype": "Link", "in_list_view": 1, "label": "Client Name", "options": "Customer", "reqd": 1},
+  {"fieldname": "project_name", "fieldtype": "Data", "in_list_view": 1, "label": "Project Name", "reqd": 1},
+  {"fieldname": "column_break_hdr", "fieldtype": "Column Break"},
+  {"fieldname": "lpo_number", "fieldtype": "Data", "label": "LPO Number"},
+  {"fieldname": "lpo_date", "fieldtype": "Data", "label": "LPO Date"},
+  {"fieldname": "section_break_items", "fieldtype": "Section Break", "label": "Job Details"},
+  {"fieldname": "items", "fieldtype": "Table", "label": "Items", "options": "JCR Item", "reqd": 1},
+  {"fieldname": "amended_from", "fieldtype": "Link", "label": "Amended From", "no_copy": 1, "options": "JCR", "print_hide": 1, "read_only": 1}
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-02 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Equipment Rental",
+ "name": "JCR",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Rental Manager", "share": 1, "submit": 1, "cancel": 1, "amend": 1, "write": 1},
+  {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Rental User", "share": 1, "submit": 1, "write": 1}
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
