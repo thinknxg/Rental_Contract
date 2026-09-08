@@ -89,7 +89,7 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Rental Return Item",
+   "options": "Rental Return Note Item",
    "reqd": 1
   },
   {
