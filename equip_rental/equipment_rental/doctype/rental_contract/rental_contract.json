@@ -15,6 +15,7 @@
   "customer_name",
   "department",
   "project",
+  "warehouse",
   "cost_center",
   "company",
   "cb1",
@@ -109,6 +110,12 @@
    "fieldtype": "Link",
    "label": "Project",
    "options": "Project"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
   },
   {
    "fieldname": "cost_center",

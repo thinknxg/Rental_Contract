@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "hire_order",
   "client_name",
   "project_name",
   "column_break_hdr",
@@ -17,8 +18,9 @@
  ],
  "fields": [
   {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "JCR-.#####", "reqd": 1},
-  {"fieldname": "client_name", "fieldtype": "Link", "in_list_view": 1, "label": "Client Name", "options": "Customer", "reqd": 1},
-  {"fieldname": "project_name", "fieldtype": "Data", "in_list_view": 1, "label": "Project Name", "reqd": 1},
+  {"fieldname": "hire_order", "fieldtype": "Link", "in_list_view": 1, "label": "Hire Order", "options": "Hire Order"},
+  {"fetch_from": "hire_order.customer", "fieldname": "client_name", "fieldtype": "Link", "in_list_view": 1, "label": "Client Name", "options": "Customer", "reqd": 1},
+  {"fetch_from": "hire_order.site_and_project", "fieldname": "project_name", "fieldtype": "Data", "in_list_view": 1, "label": "Project Name", "reqd": 1},
   {"fieldname": "column_break_hdr", "fieldtype": "Column Break"},
   {"fieldname": "lpo_number", "fieldtype": "Data", "label": "LPO Number"},
   {"fieldname": "lpo_date", "fieldtype": "Data", "label": "LPO Date"},
@@ -29,7 +31,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-02 00:00:00",
+ "modified": "2026-09-08 00:00:00",
  "modified_by": "Administrator",
  "module": "Equipment Rental",
  "name": "JCR",
