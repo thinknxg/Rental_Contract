@@ -35,6 +35,23 @@ permission_query_conditions = {
     "Rental Contract": "equip_rental.utils.permissions.contract_query_conditions",
 }
 
+# ------------------------------------------------------------------ fixtures
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", [
+                "Quotation-revision_of",
+                "Quotation-project",
+                "Quotation-subject",
+                "Quotation-customer_trn",
+                "Quotation Item-rotation_qty",
+                "Quotation Item-period",
+            ]]
+        ]
+    }
+]
+
 # ------------------------------------------------------------------ install
 after_install = "equip_rental.install.after_install"
 after_migrate = "equip_rental.install.after_migrate"

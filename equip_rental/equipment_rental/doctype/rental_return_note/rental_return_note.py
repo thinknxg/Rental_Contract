@@ -97,6 +97,8 @@ def make_sales_invoice(source_name, target_doc=None):
 
     def update_item(source_row, target_row, source_parent):
         target_row.qty = flt(source_row.damage_qty) + flt(source_row.scrap_qty) + flt(source_row.lost_qty)
+        target_row.rate = flt(source_row.charge_amount) / target_row.qty if target_row.qty else 0
+        target_row.amount = flt(source_row.charge_amount)
         target_row.cost_center = frappe.get_cached_value(
             "Rental Contract", source_parent.rental_contract, "cost_center")
 

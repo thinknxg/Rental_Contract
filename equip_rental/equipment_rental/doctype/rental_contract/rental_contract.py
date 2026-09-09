@@ -215,6 +215,7 @@ def make_return_note(source_name, target_doc=None):
 
     def post_process(source, target):
         target.company = source.company
+        target.customer = source.customer
 
     def item_condition(row):
         return row.item_status == "On Rent"
@@ -231,6 +232,7 @@ def make_return_note(source_name, target_doc=None):
         "Rental Contract": {
             "doctype": "Rental Return Note",
             "field_map": {"name": "rental_contract"},
+            "field_no_map": ["naming_series", "amended_from"],
             "validation": {"docstatus": ["=", 1]},
         },
         "Rental Contract Item": {
