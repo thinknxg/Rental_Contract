@@ -9,5 +9,9 @@ frappe.ui.form.on('Quotation', {
         } else {
             frm.set_value('customer_trn', '');
         }
-    }
+    },
+
+    custom_deal_type: function(frm) {
+        frm.fields_dict.items.grid.refresh();
+    },
 });
