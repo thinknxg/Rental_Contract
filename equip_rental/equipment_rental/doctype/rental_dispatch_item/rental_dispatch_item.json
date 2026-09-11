@@ -20,7 +20,7 @@
  "fields": [
   {"columns": 3, "fieldname": "equipment", "fieldtype": "Link", "in_list_view": 1, "label": "Equipment", "options": "Rental Equipment", "reqd": 1},
   {"columns": 3, "fetch_from": "equipment.equipment_name", "fieldname": "equipment_name", "fieldtype": "Data", "in_list_view": 1, "label": "Name", "read_only": 1},
-  {"columns": 2, "default": "Good", "fieldname": "condition_out", "fieldtype": "Select", "in_list_view": 1, "label": "Condition", "options": "New\\nGood\\nFair\\nDamaged\\nNot Working"},
+  {"columns": 2, "default": "Good", "fieldname": "condition_out", "fieldtype": "Select", "in_list_view": 1, "label": "Condition", "options": "New\nGood\nFair\nDamaged\nNot Working"},
   {"columns": 2, "fieldname": "meter_out", "fieldtype": "Float", "in_list_view": 1, "label": "Meter Out"},
   {"default": "1", "fieldname": "accessories_checked", "fieldtype": "Check", "label": "Accessories OK"},
   {"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},

@@ -47,10 +47,25 @@ fixtures = [
                 "Quotation-customer_trn",
                 "Quotation Item-rotation_qty",
                 "Quotation Item-period",
+                "Lead-custom_deal_type",
+                "Quotation-custom_deal_type",
+                "Sales Order-custom_deal_type",
+                "Sales Invoice-custom_deal_type",
+                "Rental Dispatch Note-sales_order",
+                "Rental Return Note-rental_dispatch_note",
+                "Rental Contract-sales_order",
             ]]
         ]
     }
 ]
+
+# ------------------------------------------------------------------ overrides
+override_whitelisted_methods = {
+    "equip_rental.utils.sales_order_to_dispatch.make_dispatch_note": "equip_rental.utils.sales_order_to_dispatch.make_dispatch_note",
+    "erpnext.crm.doctype.lead.lead.make_quotation": "equip_rental.utils.deal_type_overrides.make_quotation",
+    "erpnext.selling.doctype.quotation.quotation.make_sales_order": "equip_rental.utils.deal_type_overrides.make_sales_order",
+    "erpnext.selling.doctype.sales_order.sales_order.make_sales_invoice": "equip_rental.utils.deal_type_overrides.make_sales_invoice",
+}
 
 # ------------------------------------------------------------------ install
 after_install = "equip_rental.install.after_install"
@@ -88,4 +103,11 @@ jinja = {
         "equip_rental.utils.common.equipment_thumbnail",
         "equip_rental.utils.pricing.get_display_rate",
     ]
+}
+
+
+doctype_js = {
+    "Quotation": "public/js/quotation.js",
+    "Sales Order": "public/js/sales_order.js",
+    "Rental Dispatch Note": "public/js/rental_dispatch_note.js",
 }
