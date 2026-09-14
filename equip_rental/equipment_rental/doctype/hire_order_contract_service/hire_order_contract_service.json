@@ -6,19 +6,19 @@
  "engine": "InnoDB",
  "field_order": [
   "job_no",
-  "description",
-  "contract_days",
+  "service",
+  "column_break_svc",
+  "rate",
   "qty",
-  "contract_rate",
-  "contract_amount"
+  "amount"
  ],
  "fields": [
   {"fieldname": "job_no", "fieldtype": "Data", "in_list_view": 1, "label": "Job No"},
-  {"fieldname": "description", "fieldtype": "Small Text", "in_list_view": 1, "label": "Job Description", "reqd": 1},
-  {"fieldname": "contract_days", "fieldtype": "Int", "in_list_view": 1, "label": "Days"},
+  {"fieldname": "service", "fieldtype": "Data", "in_list_view": 1, "label": "Service", "reqd": 1},
+  {"fieldname": "column_break_svc", "fieldtype": "Column Break"},
+  {"fieldname": "rate", "fieldtype": "Currency", "in_list_view": 1, "label": "Rate"},
   {"fieldname": "qty", "fieldtype": "Float", "in_list_view": 1, "label": "Qty", "default": "1"},
-  {"fieldname": "contract_rate", "fieldtype": "Currency", "in_list_view": 1, "label": "Rate"},
-  {"fieldname": "contract_amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Contract Amount", "read_only": 1}
+  {"fieldname": "amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Amount", "read_only": 1}
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
@@ -26,7 +26,7 @@
  "modified": "2026-09-01 00:00:00",
  "modified_by": "Administrator",
  "module": "Equipment Rental",
- "name": "Hire Order Item",
+ "name": "Hire Order Contract Service",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

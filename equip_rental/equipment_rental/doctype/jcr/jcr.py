@@ -3,16 +3,10 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import flt
 
 
 class JCR(Document):
-    def validate(self):
-        self.calculate_amounts()
-
-    def calculate_amounts(self):
-        for item in self.items:
-            item.amount = flt(item.rate) * flt(item.qty)
+    pass
 
 
 @frappe.whitelist()
@@ -25,11 +19,7 @@ def make_sdv(source_name, target_doc=None):
 
     def update_item(source_row, target_row, source_parent):
         target_row.job_no = source_row.job_no
-        target_row.item_code = source_row.item_code
         target_row.description = source_row.job_description
-        target_row.qty = source_row.qty
-        target_row.rate = source_row.rate
-        target_row.amount = source_row.amount
 
     return get_mapped_doc("JCR", source_name, {
         "JCR": {

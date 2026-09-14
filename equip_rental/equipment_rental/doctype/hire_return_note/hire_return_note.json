@@ -16,9 +16,6 @@
   "section_break_items",
   "items",
   "section_break_totals",
-  "total_qty_to_return_wh",
-  "column_break_totals",
-  "total_qty_to_return_cross_wh",
   "total_qty_to_return",
   "remarks",
   "section_break_transport",
@@ -30,29 +27,120 @@
   "amended_from"
  ],
  "fields": [
-  {"fieldname": "naming_series", "fieldtype": "Select", "label": "HRN No", "options": "HRN-.#####", "reqd": 1},
-  {"fieldname": "date", "fieldtype": "Date", "in_list_view": 1, "label": "Date", "default": "Today", "reqd": 1},
-  {"fieldname": "customer", "fieldtype": "Link", "in_list_view": 1, "label": "Customer", "options": "Customer", "reqd": 1},
-  {"fieldname": "column_break_hdr", "fieldtype": "Column Break"},
-  {"fieldname": "site_no_and_project", "fieldtype": "Data", "label": "Site No and Project"},
-  {"fieldname": "ord_no_opt", "fieldtype": "Data", "label": "Ord No (Opt)"},
-  {"fieldname": "ref_no", "fieldtype": "Data", "label": "Ref No"},
-  {"fieldname": "rent_upto", "fieldtype": "Date", "label": "Rent UPTO"},
-  {"fieldname": "section_break_items", "fieldtype": "Section Break", "label": "Items"},
-  {"fieldname": "items", "fieldtype": "Table", "label": "Items", "options": "Hire Return Item", "reqd": 1},
-  {"fieldname": "section_break_totals", "fieldtype": "Section Break", "label": "Totals"},
-  {"fieldname": "total_qty_to_return_wh", "fieldtype": "Float", "label": "Total Qty to Ret in WH", "read_only": 1},
-  {"fieldname": "column_break_totals", "fieldtype": "Column Break"},
-  {"fieldname": "total_qty_to_return_cross_wh", "fieldtype": "Float", "label": "Total Qty to Ret in Cross-WH", "read_only": 1},
-  {"fieldname": "total_qty_to_return", "fieldtype": "Float", "label": "Total Qty to Ret", "read_only": 1},
-  {"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},
-  {"fieldname": "section_break_transport", "fieldtype": "Section Break", "label": "Transport Details"},
-  {"fieldname": "transport_by", "fieldtype": "Select", "label": "Transport By", "options": "Own\nThird Party"},
-  {"fieldname": "vehicle_no", "fieldtype": "Data", "label": "Veh No"},
-  {"fieldname": "column_break_transport", "fieldtype": "Column Break"},
-  {"fieldname": "vehicle_type", "fieldtype": "Data", "label": "Veh Type"},
-  {"fieldname": "driver", "fieldtype": "Data", "label": "Driver"},
-  {"fieldname": "amended_from", "fieldtype": "Link", "label": "Amended From", "no_copy": 1, "options": "Hire Return Note", "print_hide": 1, "read_only": 1}
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "HRN No",
+   "options": "HRN-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "default": "Today",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site_no_and_project",
+   "fieldtype": "Data",
+   "label": "Site No and Project"
+  },
+  {
+   "fieldname": "ord_no_opt",
+   "fieldtype": "Data",
+   "label": "Ord No (Opt)"
+  },
+  {
+   "fieldname": "ref_no",
+   "fieldtype": "Data",
+   "label": "Ref No"
+  },
+  {
+   "fieldname": "rent_upto",
+   "fieldtype": "Date",
+   "label": "Rent UPTO"
+  },
+  {
+   "fieldname": "section_break_items",
+   "fieldtype": "Section Break",
+   "label": "Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Hire Return Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_totals",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "total_qty_to_return",
+   "fieldtype": "Float",
+   "label": "Total Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_transport",
+   "fieldtype": "Section Break",
+   "label": "Transport Details"
+  },
+  {
+   "fieldname": "transport_by",
+   "fieldtype": "Select",
+   "label": "Transport By",
+   "options": "Own\nThird Party"
+  },
+  {
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Veh No"
+  },
+  {
+   "fieldname": "column_break_transport",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Data",
+   "label": "Veh Type"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Data",
+   "label": "Driver"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Hire Return Note",
+   "print_hide": 1,
+   "read_only": 1
+  }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
@@ -64,8 +152,33 @@
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
-  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Rental Manager", "share": 1, "submit": 1, "cancel": 1, "amend": 1, "write": 1},
-  {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Rental User", "share": 1, "submit": 1, "write": 1}
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental Manager",
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rental User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",

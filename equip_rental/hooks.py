@@ -54,6 +54,30 @@ fixtures = [
                 "Rental Dispatch Note-sales_order",
                 "Rental Return Note-rental_dispatch_note",
                 "Rental Contract-sales_order",
+                "Sales Order Item-job_no",
+                "Sales Order Item-contract_days",
+                "Sales Order-section_break_hire",
+                "Sales Order-custom_status",
+                "Sales Order-status_date",
+                "Sales Order-column_break_hire_hdr",
+                "Sales Order-site_and_project",
+                "Sales Order-section_break_hire_terms",
+                "Sales Order-payment_terms_code",
+                "Sales Order-payment_terms",
+                "Sales Order-column_break_hire_lpo",
+                "Sales Order-revision_no",
+                "Sales Order-lpo_no",
+                "Sales Order-lpo_date",
+                "Sales Order-update_lpo_in_deliveries",
+                "Sales Order-section_break_hire_dates",
+                "Sales Order-contract_from",
+                "Sales Order-contract_to",
+                "Sales Order-column_break_hire_rent",
+                "Sales Order-rent_start_from",
+                "Sales Order-description_2",
+                "Sales Order-services",
+                "Sales Order-custom_hire_order",
+                "Sales Order-custom_hire_order_contract",
             ]]
         ]
     }
@@ -76,6 +100,13 @@ doc_events = {
     "Sales Invoice": {
         "on_submit": "equip_rental.utils.billing.on_sales_invoice_submit",
         "on_cancel": "equip_rental.utils.billing.on_sales_invoice_cancel",
+    },
+    "Sales Order": {
+        "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts_so",
+        "on_submit": "equip_rental.utils.sales_order_to_hire.create_hire_order_on_submit",
+    },
+    "Quotation": {
+        "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts",
     },
 }
 
@@ -108,6 +139,7 @@ jinja = {
 
 doctype_js = {
     "Quotation": "public/js/quotation.js",
+    "Hire Order": "public/js/hire_order.js",
     "Sales Order": "public/js/sales_order.js",
     "Rental Dispatch Note": "public/js/rental_dispatch_note.js",
 }
