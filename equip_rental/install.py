@@ -26,6 +26,8 @@ CUSTOM_FIELDS = {
     "Item": [
         {"fieldname": "is_rental_item", "label": "Is Rental Item", "fieldtype": "Check",
          "insert_after": "is_stock_item"},
+        {"fieldname": "is_job_type_item", "label": "Is Job Type Item", "fieldtype": "Check",
+         "insert_after": "is_rental_item"},
     ],
     "Customer": [
         {"fieldname": "default_rate_card", "label": "Default Rental Rate Card",

@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "job_no",
+  "item_code",
   "description",
   "contract_days",
   "qty",
@@ -13,12 +14,52 @@
   "contract_amount"
  ],
  "fields": [
-  {"fieldname": "job_no", "fieldtype": "Data", "in_list_view": 1, "label": "Job No"},
-  {"fieldname": "description", "fieldtype": "Small Text", "in_list_view": 1, "label": "Job Description", "reqd": 1},
-  {"fieldname": "contract_days", "fieldtype": "Int", "in_list_view": 1, "label": "Days"},
-  {"fieldname": "qty", "fieldtype": "Float", "in_list_view": 1, "label": "Qty", "default": "1"},
-  {"fieldname": "contract_rate", "fieldtype": "Currency", "in_list_view": 1, "label": "Rate"},
-  {"fieldname": "contract_amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Contract Amount", "read_only": 1}
+  {
+   "fieldname": "job_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job No"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Job Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_days",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Days"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "default": "1"
+  },
+  {
+   "fieldname": "contract_rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate"
+  },
+  {
+   "fieldname": "contract_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Contract Amount",
+   "read_only": 1
+  }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,

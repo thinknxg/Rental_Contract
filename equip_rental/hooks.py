@@ -102,11 +102,29 @@ doc_events = {
         "on_cancel": "equip_rental.utils.billing.on_sales_invoice_cancel",
     },
     "Sales Order": {
-        "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts_so",
+        "validate": [
+            "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts_so",
+            "equip_rental.utils.item_type_validation.validate_sales_order_items",
+        ],
         "on_submit": "equip_rental.utils.sales_order_to_hire.create_hire_order_on_submit",
+    },
+    "Item": {
+        "validate": [
+            "equip_rental.utils.rental_item_defaults.apply_rental_item_defaults",
+            "equip_rental.utils.rental_item_defaults.apply_job_type_item_defaults",
+        ],
     },
     "Quotation": {
         "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts",
+    },
+    "Hire Order": {
+        "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
+    },
+    "Hire Order Contract": {
+        "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
+    },
+    "Rental Contract": {
+        "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
     },
 }
 

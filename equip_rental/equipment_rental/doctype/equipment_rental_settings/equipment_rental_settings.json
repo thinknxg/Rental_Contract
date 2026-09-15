@@ -26,6 +26,9 @@
   "cb_bill",
   "internal_income_account",
   "internal_expense_account",
+  "rental_income_account",
+  "rental_expense_account",
+  "rental_item_tax_template",
   "damage_charge_item",
   "delivery_charge_item",
   "cross_hire_sec",
@@ -165,6 +168,24 @@
    "fieldtype": "Link",
    "label": "Internal Recharge Expense Account",
    "options": "Account"
+  },
+  {
+   "fieldname": "rental_income_account",
+   "fieldtype": "Link",
+   "label": "Rental Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "rental_expense_account",
+   "fieldtype": "Link",
+   "label": "Rental Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "rental_item_tax_template",
+   "fieldtype": "Link",
+   "label": "Rental Item Tax Template",
+   "options": "Item Tax Template"
   },
   {
    "fieldname": "damage_charge_item",
