@@ -113,7 +113,10 @@ doc_events = {
             "equip_rental.utils.rental_item_defaults.apply_rental_item_defaults",
             "equip_rental.utils.rental_item_defaults.apply_job_type_item_defaults",
         ],
-        "on_update": "equip_rental.utils.rental_item_defaults.sync_job_type_item_names",
+        "on_update": [
+            "equip_rental.utils.rental_item_defaults.sync_job_type_item_names",
+            "equip_rental.utils.rental_item_defaults.sync_rental_equipment",
+        ],
     },
     "Quotation": {
         "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts",

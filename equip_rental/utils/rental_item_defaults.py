@@ -89,3 +89,34 @@ def sync_job_type_item_names(doc, method=None):
 
     job_type.flags.ignore_permissions = True
     job_type.save()
+
+
+def sync_rental_equipment(doc, method=None):
+    """Item on_update() hook: when Is Rental Item is ticked, ensure at
+    least one Rental Equipment record exists for it (linked via its
+    Billing Item field), so the physical-unit register isn't left
+    disconnected from the Item master. Required fields we can't sensibly
+    default (Equipment Category, Serial No) are left blank for the user
+    to fill in -- this is a starter record, not a complete one."""
+    if not doc.get("is_rental_item"):
+        return
+
+    if frappe.db.exists("Rental Equipment", {"item": doc.name}):
+        return
+
+    settings = frappe.get_single("Equipment Rental Settings")
+
+    equipment = frappe.new_doc("Rental Equipment")
+    equipment.naming_series = "EQP-.#####"
+    equipment.equipment_name = doc.item_name or doc.name
+    equipment.item = doc.name
+    equipment.company = settings.default_company
+    equipment.flags.ignore_mandatory = True
+    equipment.insert(ignore_permissions=True)
+
+    frappe.msgprint(
+        f"A starter Rental Equipment record ({equipment.name}) was created for this "
+        f"item -- remember to set its Equipment Category and Serial/Plate No.",
+        title="Rental Equipment Created",
+        indicator="blue",
+    )
