@@ -14,13 +14,51 @@
   "ord_no"
  ],
  "fields": [
-  {"fieldname": "item_code", "fieldtype": "Data", "in_list_view": 1, "label": "Item Code"},
-  {"fieldname": "item_name", "fieldtype": "Data", "in_list_view": 1, "label": "Item Description", "reqd": 1},
-  {"fieldname": "unit", "fieldtype": "Data", "in_list_view": 1, "label": "Unit"},
-  {"fieldname": "good_qty", "fieldtype": "Float", "in_list_view": 1, "label": "Good Qty"},
-  {"fieldname": "damage_qty", "fieldtype": "Float", "in_list_view": 1, "label": "Damages"},
-  {"fieldname": "total_qty", "fieldtype": "Float", "in_list_view": 1, "label": "Ttl Qty", "read_only": 1},
-  {"fieldname": "ord_no", "fieldtype": "Data", "in_list_view": 1, "label": "Ord No"}
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit"
+  },
+  {
+   "fieldname": "good_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Good Qty"
+  },
+  {
+   "fieldname": "damage_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Damages"
+  },
+  {
+   "fieldname": "total_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Ttl Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ord_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ord No"
+  }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,

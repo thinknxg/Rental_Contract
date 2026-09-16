@@ -113,18 +113,24 @@ doc_events = {
             "equip_rental.utils.rental_item_defaults.apply_rental_item_defaults",
             "equip_rental.utils.rental_item_defaults.apply_job_type_item_defaults",
         ],
+        "on_update": "equip_rental.utils.rental_item_defaults.sync_job_type_item_names",
     },
     "Quotation": {
         "validate": "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts",
     },
     "Hire Order": {
         "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
+        "on_submit": "equip_rental.utils.rental_stock_movement.issue_stock_on_hire_order_submit",
     },
     "Hire Order Contract": {
         "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
+        "on_submit": "equip_rental.utils.rental_stock_movement.issue_stock_on_hire_order_submit",
     },
     "Rental Contract": {
         "validate": "equip_rental.utils.item_type_validation.validate_hire_only_items",
+    },
+    "Hire Return Note": {
+        "on_submit": "equip_rental.utils.rental_stock_movement.receive_stock_on_hire_return_submit",
     },
 }
 

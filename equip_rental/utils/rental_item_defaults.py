@@ -58,3 +58,34 @@ def apply_job_type_item_defaults(doc, method=None):
             title="Product Bundle Required",
             indicator="orange",
         )
+
+
+def sync_job_type_item_names(doc, method=None):
+    """Item on_update() hook: when a Job Type item is linked to a Job Type
+    master record, mirror its Product Bundle components into that Job
+    Type's item_names table, so the rate-card view and the real
+    stock-movement source of truth (Product Bundle) never drift apart."""
+    if not (doc.get("is_job_type_item") and doc.get("job_type")):
+        return
+
+    bundle_name = frappe.db.get_value("Product Bundle", {"new_item_code": doc.name}, "name")
+    if not bundle_name:
+        return
+
+    bundle = frappe.get_doc("Product Bundle", bundle_name)
+    job_type = frappe.get_doc("Job Type", doc.job_type)
+
+    job_type.item_names = []
+    for row in bundle.items:
+        item_name, stock_uom = frappe.db.get_value(
+            "Item", row.item_code, ["item_name", "stock_uom"]
+        )
+        job_type.append("item_names", {
+            "item_code": row.item_code,
+            "item_description": item_name,
+            "unit": stock_uom,
+            "quantity": row.qty,
+        })
+
+    job_type.flags.ignore_permissions = True
+    job_type.save()

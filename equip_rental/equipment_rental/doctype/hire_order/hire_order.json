@@ -31,7 +31,8 @@
   "total_contract_amount",
   "section_break_services",
   "services",
-  "amended_from"
+  "amended_from",
+  "custom_stock_issue_entry"
  ],
  "fields": [
   {
@@ -211,6 +212,15 @@
    "options": "Hire Order",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "custom_stock_issue_entry",
+   "fieldtype": "Link",
+   "label": "Stock Issue Entry",
+   "options": "Stock Entry",
+   "read_only": 1,
+   "no_copy": 1,
+   "insert_after": "amended_from"
   }
  ],
  "index_web_pages_for_search": 1,

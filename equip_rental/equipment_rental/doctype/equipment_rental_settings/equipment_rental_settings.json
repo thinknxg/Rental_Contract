@@ -17,6 +17,7 @@
   "default_uom",
   "default_taxes_and_charges",
   "default_warehouse",
+  "damage_warehouse",
   "book_internal_usage",
   "billing_sec",
   "grace_period_days",
@@ -114,6 +115,12 @@
    "fieldname": "default_warehouse",
    "fieldtype": "Link",
    "label": "Default Equipment Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "damage_warehouse",
+   "fieldtype": "Link",
+   "label": "Damage/Scrap Warehouse",
    "options": "Warehouse"
   },
   {
