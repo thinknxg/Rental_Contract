@@ -114,7 +114,6 @@ doc_events = {
             "equip_rental.utils.rental_item_defaults.apply_job_type_item_defaults",
         ],
         "on_update": [
-            "equip_rental.utils.rental_item_defaults.sync_job_type_item_names",
             "equip_rental.utils.rental_item_defaults.sync_rental_equipment",
         ],
     },

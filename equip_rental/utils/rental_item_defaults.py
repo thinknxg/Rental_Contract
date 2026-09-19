@@ -76,19 +76,26 @@ def sync_job_type_item_names(doc, method=None):
     job_type = frappe.get_doc("Job Type", doc.job_type)
 
     job_type.item_names = []
+    doc.set("job_type_item_names", [])
     for row in bundle.items:
         item_name, stock_uom = frappe.db.get_value(
             "Item", row.item_code, ["item_name", "stock_uom"]
         )
-        job_type.append("item_names", {
+        row_dict = {
             "item_code": row.item_code,
             "item_description": item_name,
             "unit": stock_uom,
             "quantity": row.qty,
-        })
+        }
+        job_type.append("item_names", row_dict)
+        doc.append("job_type_item_names", row_dict)
 
     job_type.flags.ignore_permissions = True
     job_type.save()
+
+    # Persist Item's own read-only mirror without re-running validate/on_update
+    # (db_update_all writes parent + child rows directly, no hooks -> no recursion)
+    doc.db_update_all()
 
 
 def sync_rental_equipment(doc, method=None):

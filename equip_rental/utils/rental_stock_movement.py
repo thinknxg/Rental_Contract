@@ -10,14 +10,15 @@ def _get_item_flags(item_code):
 
 def _explode_line(item_code, qty):
     """Returns a list of (component_item_code, qty) pairs. Job Type items
-    explode via their Product Bundle; plain rental items are a single line."""
+    explode via their own Item Names table on the Item itself; plain
+    rental items are a single line."""
     flags = _get_item_flags(item_code)
     if flags and flags.is_job_type_item:
-        bundle = frappe.db.get_value("Product Bundle", {"new_item_code": item_code}, "name")
-        if not bundle:
-            frappe.throw(f"No Product Bundle found for Job Type item {item_code}")
-        bundle_doc = frappe.get_doc("Product Bundle", bundle)
-        return [(row.item_code, flt(row.qty) * flt(qty)) for row in bundle_doc.items]
+        item = frappe.get_doc("Item", item_code)
+        components = item.get("job_type_item_names")
+        if not components:
+            frappe.throw(f"No component items defined for Job Type item {item_code}")
+        return [(row.item_code, flt(row.quantity) * flt(qty)) for row in components]
     return [(item_code, flt(qty))]
 
 
