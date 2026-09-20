@@ -195,6 +195,14 @@ def make_dispatch_note(source_name, target_doc=None):
     def item_condition(row):
         return row.item_status == "Pending Dispatch"
 
+    def update_item(source_row, target_row, source_parent):
+        target_row.item_code = source_row.item
+        target_row.item_name = source_row.equipment_name
+        target_row.warehouse = source_parent.warehouse
+        target_row.qty_to_return = source_row.qty
+        target_row.project = source_parent.project
+        target_row.rental_contract = source_parent.name
+
     return get_mapped_doc("Rental Contract", source_name, {
         "Rental Contract": {
             "doctype": "Rental Dispatch Note",
@@ -202,9 +210,9 @@ def make_dispatch_note(source_name, target_doc=None):
             "validation": {"docstatus": ["=", 1]},
         },
         "Rental Contract Item": {
-            "doctype": "Rental Dispatch Item",
-            "field_map": {"equipment": "equipment", "equipment_name": "equipment_name"},
+            "doctype": "Rental Return Note Item",
             "condition": item_condition,
+            "postprocess": update_item,
         },
     }, target_doc, post_process)
 

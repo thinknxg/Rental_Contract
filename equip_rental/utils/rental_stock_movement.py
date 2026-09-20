@@ -46,6 +46,7 @@ def issue_stock_on_hire_order_submit(doc, method=None):
     for item_code, qty in lines:
         se.append("items", {
             "item_code": item_code, "qty": qty, "s_warehouse": warehouse,
+            "allow_zero_valuation_rate": 1,
         })
     se.insert(ignore_permissions=True)
     se.submit()
@@ -86,6 +87,7 @@ def receive_stock_on_hire_return_submit(doc, method=None):
     for item_code, qty, t_warehouse in lines:
         se.append("items", {
             "item_code": item_code, "qty": qty, "t_warehouse": t_warehouse,
+            "allow_zero_valuation_rate": 1,
         })
     se.insert(ignore_permissions=True)
     se.submit()

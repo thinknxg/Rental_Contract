@@ -7,59 +7,40 @@
  "field_order": [
   "job_no",
   "item_code",
+  "job_tower",
   "description",
+  "column_break_dim",
+  "length",
+  "width",
+  "height",
+  "area",
+  "section_break_rate",
   "contract_days",
-  "qty",
   "contract_rate",
+  "qty",
+  "column_break_amt",
+  "rate_type",
+  "rent",
   "contract_amount"
  ],
  "fields": [
-  {
-   "fieldname": "job_no",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Job No"
-  },
-  {
-   "fieldname": "item_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Item Code",
-   "options": "Item"
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "in_list_view": 1,
-   "label": "Job Description",
-   "reqd": 1
-  },
-  {
-   "fieldname": "contract_days",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Days"
-  },
-  {
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Qty",
-   "default": "1"
-  },
-  {
-   "fieldname": "contract_rate",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Rate"
-  },
-  {
-   "fieldname": "contract_amount",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Contract Amount",
-   "read_only": 1
-  }
+  {"fieldname": "job_no", "fieldtype": "Data", "in_list_view": 1, "label": "Job No"},
+  {"fieldname": "item_code", "fieldtype": "Link", "options": "Item", "in_list_view": 1, "label": "Item Code"},
+  {"fieldname": "job_tower", "fieldtype": "Data", "in_list_view": 1, "label": "Job/Tower"},
+  {"fieldname": "description", "fieldtype": "Small Text", "in_list_view": 1, "label": "Job Description", "reqd": 1},
+  {"fieldname": "column_break_dim", "fieldtype": "Column Break"},
+  {"fieldname": "length", "fieldtype": "Float", "in_list_view": 1, "label": "Length"},
+  {"fieldname": "width", "fieldtype": "Float", "in_list_view": 1, "label": "Width"},
+  {"fieldname": "height", "fieldtype": "Float", "in_list_view": 1, "label": "Height"},
+  {"fieldname": "area", "fieldtype": "Float", "in_list_view": 1, "label": "Area", "read_only": 1},
+  {"fieldname": "section_break_rate", "fieldtype": "Section Break"},
+  {"fieldname": "contract_days", "fieldtype": "Int", "in_list_view": 1, "label": "Days"},
+  {"fieldname": "contract_rate", "fieldtype": "Currency", "in_list_view": 1, "label": "Rate"},
+  {"fieldname": "qty", "fieldtype": "Float", "in_list_view": 1, "label": "Qty", "default": "1"},
+  {"fieldname": "column_break_amt", "fieldtype": "Column Break"},
+  {"fieldname": "rate_type", "fieldtype": "Select", "in_list_view": 1, "label": "Rate Type", "options": "Daily\nWeekly\nMonthly"},
+  {"fieldname": "rent", "fieldtype": "Currency", "in_list_view": 1, "label": "Rent"},
+  {"fieldname": "contract_amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Contract Amount", "read_only": 1}
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,

@@ -45,6 +45,18 @@ CUSTOM_FIELDS = {
         {"fieldname": "job_type_item_names", "label": "Item Names", "fieldtype": "Table",
          "options": "Job Type Item Name", "insert_after": "section_break_jt_items"},
     ],
+    "Sales Order Item": [
+        {"fieldname": "column_break_so_dim", "fieldtype": "Column Break",
+         "insert_after": "contract_days"},
+        {"fieldname": "length", "label": "Length", "fieldtype": "Float",
+         "insert_after": "column_break_so_dim"},
+        {"fieldname": "width", "label": "Width", "fieldtype": "Float",
+         "insert_after": "length"},
+        {"fieldname": "height", "label": "Height", "fieldtype": "Float",
+         "insert_after": "width"},
+        {"fieldname": "area", "label": "Area", "fieldtype": "Float",
+         "read_only": 1, "insert_after": "height"},
+    ],
     "Customer": [
         {"fieldname": "default_rate_card", "label": "Default Rental Rate Card",
          "fieldtype": "Link", "options": "Rental Rate Card", "insert_after": "default_price_list"},

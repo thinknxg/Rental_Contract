@@ -14,6 +14,7 @@ class HireOrder(Document):
 
     def calculate_item_amounts(self):
         for item in self.items:
+            item.area = flt(item.length) * flt(item.width) * flt(item.height)
             item.contract_amount = flt(item.contract_rate) * flt(item.qty)
 
     def calculate_service_amounts(self):

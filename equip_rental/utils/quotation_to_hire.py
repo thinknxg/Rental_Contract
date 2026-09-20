@@ -4,6 +4,7 @@ from frappe.model.mapper import get_mapped_doc
 
 
 def _map_item(source, target, source_parent):
+    target.item_code = source.item_code
     target.description = source.description
     target.qty = source.qty
     target.contract_rate = source.rate

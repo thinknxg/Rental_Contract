@@ -105,6 +105,7 @@ doc_events = {
         "validate": [
             "equip_rental.utils.deal_type_overrides.recalculate_hire_amounts_so",
             "equip_rental.utils.item_type_validation.validate_sales_order_items",
+            "equip_rental.utils.sales_order_to_hire.calculate_so_item_area",
         ],
         "on_submit": "equip_rental.utils.sales_order_to_hire.create_hire_order_on_submit",
     },

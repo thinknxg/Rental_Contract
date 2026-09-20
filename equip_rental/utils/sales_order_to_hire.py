@@ -1,6 +1,7 @@
 import frappe
+from frappe.utils import flt
 
-ITEM_FIELDS = ["job_no", "description", "contract_days", "qty"]
+ITEM_FIELDS = ["item_code", "job_no", "description", "contract_days", "qty", "length", "width", "height"]
 SERVICE_FIELDS = ["job_no", "service", "rate", "qty", "amount"]
 
 HEADER_FIELDS = [
@@ -61,3 +62,10 @@ def create_hire_order_on_submit(doc, method=None):
     new_doc.submit()
 
     frappe.db.set_value("Sales Order", doc.name, link_fieldname, new_doc.name)
+
+
+def calculate_so_item_area(doc, method=None):
+    """Sales Order validate() hook: compute Length x Width = Area on
+    each item row, mirroring Hire Order Item's own area calculation."""
+    for item in doc.items:
+        item.area = flt(item.get("length")) * flt(item.get("width")) * flt(item.get("height"))
