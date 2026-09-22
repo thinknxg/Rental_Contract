@@ -16,12 +16,28 @@ frappe.ui.form.on('Quotation', {
         frm.fields_dict.items.grid.refresh();
         recalculate_all_items(frm);
     },
+
+    onload: function(frm) {
+        if (!frm.__original_calculate_taxes_and_totals) {
+            frm.__original_calculate_taxes_and_totals = frm.cscript.calculate_taxes_and_totals;
+        }
+        toggle_core_totals(frm);
+    },
+    refresh: function(frm) {
+        toggle_core_totals(frm);
+    },
 });
 
 frappe.ui.form.on('Quotation Item', {
     qty: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
     rate: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
     rotation_qty: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_rate_type: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_length: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_breadth: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_height: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_no_of_locations: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
+    custom_duration: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
 });
 
 function recalculate_item(frm, cdt, cdn) {
@@ -31,8 +47,15 @@ function recalculate_item(frm, cdt, cdn) {
     }
 
     const row = locals[cdt][cdn];
-    const multiplier = row.rotation_qty ? row.rotation_qty : 1;
-    const correct_amount = flt(row.qty) * flt(row.rate) * flt(multiplier);
+    let correct_amount;
+
+    if (frm.doc.custom_deal_type === "Contract Hire") {
+        correct_amount = calculate_contract_hire_amount(row);
+    } else {
+        // Material Hire: existing rotation_qty based calculation
+        const multiplier = row.rotation_qty ? row.rotation_qty : 1;
+        correct_amount = flt(row.qty) * flt(row.rate) * flt(multiplier);
+    }
 
     row.amount = correct_amount;
     row.net_amount = correct_amount;
@@ -43,6 +66,44 @@ function recalculate_item(frm, cdt, cdn) {
     recalculate_totals(frm);
 }
 
+function calculate_contract_hire_amount(row) {
+    const length = flt(row.custom_length);
+    const breadth = flt(row.custom_breadth);
+    const height = flt(row.custom_height);
+    const locations = flt(row.custom_no_of_locations);
+    const duration = flt(row.custom_duration);
+    const qty = flt(row.qty);
+    const rate = flt(row.rate);
+
+    let amount = 0;
+
+    switch (row.custom_rate_type) {
+        case "M3":
+            row.custom_calculated_volume = length * breadth * height * locations;
+            amount = row.custom_calculated_volume * rate * duration;
+            break;
+        case "SQM":
+            row.custom_calculated_volume = length * breadth * locations;
+            amount = row.custom_calculated_volume * rate * duration;
+            break;
+        case "Nos":
+            amount = qty * rate;
+            break;
+        case "Day":
+        case "Month":
+            amount = qty * rate * duration;
+            break;
+        case "Lumpsum":
+            amount = rate;
+            break;
+        default:
+            amount = 0;
+    }
+
+    refresh_field("custom_calculated_volume", row.name, "items");
+    return amount;
+}
+
 function recalculate_all_items(frm) {
     (frm.doc.items || []).forEach(row => recalculate_item(frm, row.doctype, row.name));
 }
@@ -50,7 +111,7 @@ function recalculate_all_items(frm) {
 function recalculate_totals(frm) {
     // Manually sum grand totals WITHOUT calling core's calculate_taxes_and_totals,
     // since that function recalculates every item's amount as Qty x Rate and
-    // would silently overwrite our Hire-specific Qty x Rate x Duration amounts.
+    // would silently overwrite our Hire-specific custom amounts.
     let total = 0;
     (frm.doc.items || []).forEach(row => { total += flt(row.amount); });
 
@@ -65,18 +126,6 @@ function recalculate_totals(frm) {
     frm.set_value("base_grand_total", total * conversion_rate);
     frm.set_value("base_rounded_total", Math.round(total * conversion_rate));
 }
-
-frappe.ui.form.on('Quotation', {
-    onload: function(frm) {
-        if (!frm.__original_calculate_taxes_and_totals) {
-            frm.__original_calculate_taxes_and_totals = frm.cscript.calculate_taxes_and_totals;
-        }
-        toggle_core_totals(frm);
-    },
-    refresh: function(frm) {
-        toggle_core_totals(frm);
-    },
-});
 
 function toggle_core_totals(frm) {
     const hire_types = ["Material Hire", "Contract Hire"];
