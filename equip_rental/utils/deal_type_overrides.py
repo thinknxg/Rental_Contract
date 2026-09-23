@@ -33,6 +33,9 @@ def make_sales_order(source_name, target_doc=None):
             source_row = quotation_items.get(target_row.quotation_item)
             if source_row:
                 target_row.contract_days = source_row.rotation_qty
+                target_row.custom_length = source_row.custom_length
+                target_row.custom_breadth = source_row.custom_breadth
+                target_row.custom_height = source_row.custom_height
 
     return target
 
