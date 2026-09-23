@@ -36,6 +36,10 @@ function set_item_code_filter(frm) {
         frm.set_query("item_code", "items", function() {
             return { filters: { is_rental_item: 1 } };
         });
+    } else if (frm.doc.custom_deal_type === "Material Sale") {
+        frm.set_query("item_code", "items", function() {
+            return { filters: { is_rental_item: 0 } };
+        });
     } else {
         frm.set_query("item_code", "items", function() {
             return {};
