@@ -168,6 +168,7 @@ jinja = {
 
 doctype_js = {
     "Quotation": "public/js/quotation.js",
+    "Item": "public/js/item.js",
     "Hire Order": "public/js/hire_order.js",
     "Sales Order": "public/js/sales_order.js",
     "Rental Dispatch Note": "public/js/rental_dispatch_note.js",
