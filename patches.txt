@@ -1,1 +1,0 @@
-equip_rental.patches.v1_0.fix_sales_order_field_order
