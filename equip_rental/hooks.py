@@ -78,6 +78,8 @@ fixtures = [
                 "Sales Order-services",
                 "Sales Order-custom_hire_order",
                 "Sales Order-custom_hire_order_contract",
+                "JCR Item-custom_erection_date",
+                "JCR Item-custom_dismantle_date",
             ]]
         ]
     }
