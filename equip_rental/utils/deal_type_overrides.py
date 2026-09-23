@@ -36,6 +36,9 @@ def make_sales_order(source_name, target_doc=None):
                 target_row.custom_length = source_row.custom_length
                 target_row.custom_breadth = source_row.custom_breadth
                 target_row.custom_height = source_row.custom_height
+                target_row.length = source_row.custom_length
+                target_row.width = source_row.custom_breadth
+                target_row.height = source_row.custom_height
 
     return target
 
