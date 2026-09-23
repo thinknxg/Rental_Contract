@@ -15,6 +15,7 @@ frappe.ui.form.on('Quotation', {
         toggle_core_totals(frm);
         frm.fields_dict.items.grid.refresh();
         recalculate_all_items(frm);
+        set_item_code_filter(frm);
     },
 
     onload: function(frm) {
@@ -25,8 +26,22 @@ frappe.ui.form.on('Quotation', {
     },
     refresh: function(frm) {
         toggle_core_totals(frm);
+        set_item_code_filter(frm);
     },
 });
+
+function set_item_code_filter(frm) {
+    const hire_types = ["Material Hire", "Contract Hire"];
+    if (hire_types.includes(frm.doc.custom_deal_type)) {
+        frm.set_query("item_code", "items", function() {
+            return { filters: { is_rental_item: 1 } };
+        });
+    } else {
+        frm.set_query("item_code", "items", function() {
+            return {};
+        });
+    }
+}
 
 frappe.ui.form.on('Quotation Item', {
     qty: function(frm, cdt, cdn) { recalculate_item(frm, cdt, cdn); },
