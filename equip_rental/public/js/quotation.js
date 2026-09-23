@@ -89,38 +89,14 @@ function calculate_contract_hire_amount(row) {
     const length = flt(row.custom_length);
     const breadth = flt(row.custom_breadth);
     const height = flt(row.custom_height);
-    const locations = flt(row.custom_no_of_locations);
     const duration = flt(row.custom_duration);
-    const qty = flt(row.qty);
     const rate = flt(row.rate);
 
-    let amount = 0;
+    const qty = length * breadth * height;
+    row.qty = qty;
+    refresh_field("qty", row.name, "items");
 
-    switch (row.custom_rate_type) {
-        case "M3":
-            row.custom_calculated_volume = length * breadth * height * locations;
-            amount = row.custom_calculated_volume * rate * duration;
-            break;
-        case "SQM":
-            row.custom_calculated_volume = length * breadth * locations;
-            amount = row.custom_calculated_volume * rate * duration;
-            break;
-        case "Nos":
-            amount = qty * rate;
-            break;
-        case "Day":
-        case "Month":
-            amount = qty * rate * duration;
-            break;
-        case "Lumpsum":
-            amount = rate;
-            break;
-        default:
-            amount = 0;
-    }
-
-    refresh_field("custom_calculated_volume", row.name, "items");
-    return amount;
+    return qty * duration * rate;
 }
 
 function recalculate_all_items(frm) {
