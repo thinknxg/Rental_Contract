@@ -66,15 +66,8 @@ function recalculate_item(frm, cdt, cdn) {
     }
 
     const row = locals[cdt][cdn];
-    let correct_amount;
-
-    if (frm.doc.custom_deal_type === "Contract Hire") {
-        correct_amount = calculate_contract_hire_amount(row);
-    } else {
-        // Material Hire: existing rotation_qty based calculation
-        const multiplier = row.rotation_qty ? row.rotation_qty : 1;
-        correct_amount = flt(row.qty) * flt(row.rate) * flt(multiplier);
-    }
+    // Material Hire and Contract Hire now share the same L x B x H / duration formula
+    const correct_amount = calculate_contract_hire_amount(row);
 
     row.amount = correct_amount;
     row.net_amount = correct_amount;
