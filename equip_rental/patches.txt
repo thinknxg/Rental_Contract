@@ -5,3 +5,4 @@ equip_rental.patches.v1_1.migrate_sub_rental_to_cross_hire
 equip_rental.patches.v1_0.add_contract_hire_fields
 equip_rental.patches.v1_0.set_contract_hire_fields_in_list_view
 equip_rental.patches.v1_0.add_jcr_erection_dismantle_dates
+equip_rental.patches.v1_0.hide_custom_duration_column
