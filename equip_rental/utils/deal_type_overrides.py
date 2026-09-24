@@ -39,6 +39,9 @@ def make_sales_order(source_name, target_doc=None):
                 target_row.length = source_row.custom_length
                 target_row.width = source_row.custom_breadth
                 target_row.height = source_row.custom_height
+                target_row.custom_contract_days = source_row.get("contract_days")
+                target_row.excess_charge = source_row.get("excess_charge")
+                target_row.excess_period = source_row.get("excess_period")
 
     return target
 
