@@ -13,3 +13,4 @@ equip_rental.patches.v1_0.gate_sales_order_item_hire_fields
 equip_rental.patches.v1_0.hide_sales_order_hire_header_fields
 equip_rental.patches.v1_0.fix_sales_order_field_order
 equip_rental.patches.v1_0.add_lbh_to_sales_order_item
+equip_rental.patches.v1_0.add_excess_and_contract_days_to_quotation_item
