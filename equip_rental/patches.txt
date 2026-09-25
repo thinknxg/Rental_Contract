@@ -18,3 +18,5 @@ equip_rental.patches.v1_0.add_excess_columns_to_sales_order_item
 equip_rental.patches.v1_0.add_separate_contract_days_to_sales_order_item
 equip_rental.patches.v1_0.add_sales_order_and_excess_fields_to_jcr
 equip_rental.patches.v1_0.fix_sales_order_item_code_label
+equip_rental.patches.v1_0.add_qty_to_jcr_item
+equip_rental.patches.v1_0.fix_jcr_sales_order_field_position
