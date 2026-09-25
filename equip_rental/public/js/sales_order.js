@@ -135,3 +135,17 @@ frappe.ui.form.on("Sales Order", {
         }
     },
 });
+
+frappe.ui.form.on("Sales Order", {
+    refresh: function(frm) {
+        const hire_types = ["Material Hire Order", "Contract Hire Order"];
+        if (frm.doc.docstatus === 1 && hire_types.includes(frm.doc.custom_deal_type)) {
+            frm.add_custom_button(__("JCR"), function() {
+                frappe.model.open_mapped_doc({
+                    method: "equip_rental.utils.sales_order_to_jcr.make_jcr",
+                    frm: frm,
+                });
+            }, __("Create"));
+        }
+    },
+});

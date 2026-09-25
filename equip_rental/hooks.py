@@ -111,6 +111,9 @@ doc_events = {
         ],
         "on_submit": "equip_rental.utils.sales_order_to_hire.create_hire_order_on_submit",
     },
+    "JCR": {
+        "validate": "equip_rental.utils.jcr_excess.calculate_excess",
+    },
     "Item": {
         "validate": [
             "equip_rental.utils.rental_item_defaults.apply_rental_item_defaults",
@@ -118,6 +121,7 @@ doc_events = {
         ],
         "on_update": [
             "equip_rental.utils.rental_item_defaults.sync_rental_equipment",
+            "equip_rental.utils.rental_item_defaults.sync_job_type_item_names",
         ],
     },
     "Quotation": {
@@ -172,4 +176,5 @@ doctype_js = {
     "Hire Order": "public/js/hire_order.js",
     "Sales Order": "public/js/sales_order.js",
     "Rental Dispatch Note": "public/js/rental_dispatch_note.js",
+    "JCR": "public/js/jcr.js",
 }
