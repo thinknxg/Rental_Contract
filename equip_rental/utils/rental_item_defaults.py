@@ -64,7 +64,13 @@ def sync_job_type_item_names(doc, method=None):
     """Item on_update() hook: when a Job Type item is linked to a Job Type
     master record, mirror its Product Bundle components into that Job
     Type's item_names table, so the rate-card view and the real
-    stock-movement source of truth (Product Bundle) never drift apart."""
+    stock-movement source of truth (Product Bundle) never drift apart.
+    Rebuilds the Job Type's item_names from every job-type item currently
+    linked to it (via each one's own Product Bundle) so multiple items
+    sharing a Job Type don't overwrite each other's rows. Explicitly
+    deletes existing child rows before rewriting, since db_update_all()
+    upserts rather than replaces and otherwise accumulates duplicates
+    on every save."""
     if not (doc.get("is_job_type_item") and doc.get("job_type")):
         return
 
@@ -72,29 +78,44 @@ def sync_job_type_item_names(doc, method=None):
     if not bundle_name:
         return
 
-    bundle = frappe.get_doc("Product Bundle", bundle_name)
     job_type = frappe.get_doc("Job Type", doc.job_type)
 
+    linked_items = frappe.get_all(
+        "Item",
+        filters={"is_job_type_item": 1, "job_type": doc.job_type},
+        pluck="name",
+    )
+
     job_type.item_names = []
-    doc.set("job_type_item_names", [])
-    for row in bundle.items:
-        item_name, stock_uom = frappe.db.get_value(
-            "Item", row.item_code, ["item_name", "stock_uom"]
-        )
-        row_dict = {
-            "item_code": row.item_code,
-            "item_description": item_name,
-            "unit": stock_uom,
-            "quantity": row.qty,
-        }
-        job_type.append("item_names", row_dict)
-        doc.append("job_type_item_names", row_dict)
+    this_item_rows = []
+    for item_code in linked_items:
+        item_bundle_name = frappe.db.get_value("Product Bundle", {"new_item_code": item_code}, "name")
+        if not item_bundle_name:
+            continue
+        for row in frappe.get_doc("Product Bundle", item_bundle_name).items:
+            item_name, stock_uom = frappe.db.get_value(
+                "Item", row.item_code, ["item_name", "stock_uom"]
+            )
+            row_dict = {
+                "item_code": row.item_code,
+                "item_description": item_name,
+                "unit": stock_uom,
+                "quantity": row.qty,
+            }
+            job_type.append("item_names", row_dict)
+            if item_code == doc.name:
+                this_item_rows.append(row_dict)
 
     job_type.flags.ignore_permissions = True
     job_type.save()
 
-    # Persist Item's own read-only mirror without re-running validate/on_update
-    # (db_update_all writes parent + child rows directly, no hooks -> no recursion)
+    frappe.db.delete("Job Type Item Name", {
+        "parent": doc.name,
+        "parentfield": "job_type_item_names",
+    })
+    doc.set("job_type_item_names", [])
+    for r in this_item_rows:
+        doc.append("job_type_item_names", r)
     doc.db_update_all()
 
 
