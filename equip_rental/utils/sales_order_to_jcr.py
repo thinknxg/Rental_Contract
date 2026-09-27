@@ -8,7 +8,6 @@ from frappe.utils import strip_html
 @frappe.whitelist()
 def make_jcr(source_name, target_doc=None):
     def set_missing_values(source, target):
-        target.hire_order = source.get("custom_hire_order")
         target.sales_order = source.name
         lpo_date = source.get("lpo_date")
         target.lpo_date = str(lpo_date) if lpo_date else None
@@ -19,6 +18,7 @@ def make_jcr(source_name, target_doc=None):
     def update_item(source_row, target_row, source_parent):
         target_row.job_no = source_row.get("job_no") or source_row.item_code
         target_row.sales_order_item = source_row.name
+        target_row.qty = source_row.qty
         target_row.contract_days = source_row.get("custom_contract_days")
         target_row.excess_charge = source_row.get("excess_charge")
         target_row.excess_period = source_row.get("excess_period")
