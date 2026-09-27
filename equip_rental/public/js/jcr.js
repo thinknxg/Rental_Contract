@@ -38,3 +38,23 @@ function recalculate_row(frm, cdt, cdn) {
 
     frappe.model.set_value(cdt, cdn, "excess_amount", excess_amount);
 }
+
+frappe.ui.form.on("JCR", {
+    refresh: function(frm) {
+        if (frm.doc.docstatus === 1) {
+            frm.add_custom_button(__("Sales Invoice"), function() {
+                frappe.call({
+                    method: "equip_rental.equipment_rental.doctype.jcr.jcr.create_sales_invoice",
+                    args: { source_name: frm.doc.name },
+                    freeze: true,
+                    freeze_message: __("Creating Sales Invoice..."),
+                    callback: function(r) {
+                        if (r.message) {
+                            frappe.set_route("Form", "Sales Invoice", r.message);
+                        }
+                    },
+                });
+            }, __("Create"));
+        }
+    },
+});
