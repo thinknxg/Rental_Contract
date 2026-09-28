@@ -42,6 +42,8 @@ def make_sales_order(source_name, target_doc=None):
                 target_row.custom_contract_days = source_row.get("contract_days")
                 target_row.excess_charge = source_row.get("excess_charge")
                 target_row.excess_period = source_row.get("excess_period")
+                target_row.period = source_row.get("period")
+                target_row.is_job_type_item = source_row.get("is_job_type_item")
 
     return target
 

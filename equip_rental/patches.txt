@@ -22,3 +22,4 @@ equip_rental.patches.v1_0.add_qty_to_jcr_item
 equip_rental.patches.v1_0.fix_jcr_sales_order_field_position
 equip_rental.patches.v1_0.add_locked_amount_to_sales_invoice_item
 equip_rental.patches.v1_0.set_quotation_item_grid_order
+equip_rental.patches.v1_0.set_sales_order_item_grid_order
