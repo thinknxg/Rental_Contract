@@ -75,6 +75,11 @@ def recalculate_hire_amounts(doc, method=None):
     total = 0
 
     for item in doc.items:
+        length = float(item.get("custom_length") or 0)
+        breadth = float(item.get("custom_breadth") or 0)
+        height = float(item.get("custom_height") or 0)
+        if length and breadth and height:
+            item.qty = length * breadth * height
         multiplier = item.rotation_qty if item.rotation_qty else 1
         item.amount = item.qty * item.rate * multiplier
         item.net_amount = item.amount

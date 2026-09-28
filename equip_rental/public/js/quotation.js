@@ -66,7 +66,6 @@ function recalculate_item(frm, cdt, cdn) {
     }
 
     const row = locals[cdt][cdn];
-    // Material Hire and Contract Hire now share the same L x B x H / duration formula
     const correct_amount = calculate_contract_hire_amount(row);
 
     row.amount = correct_amount;
@@ -78,18 +77,23 @@ function recalculate_item(frm, cdt, cdn) {
     recalculate_totals(frm);
 }
 
+// Same rule as Sales Order and the server-side save hook:
+// amount = Qty x Unit Price x Duration (rotation_qty; blank counts as 1),
+// with Qty = Length x Breadth x Height once all three are filled.
 function calculate_contract_hire_amount(row) {
     const length = flt(row.custom_length);
     const breadth = flt(row.custom_breadth);
     const height = flt(row.custom_height);
-    const duration = flt(row.custom_duration);
-    const rate = flt(row.rate);
 
-    const qty = length * breadth * height;
-    row.qty = qty;
-    refresh_field("qty", row.name, "items");
+    // Only override Qty when all three dimensions are given, so items
+    // without dimensions keep the qty that was typed.
+    if (length && breadth && height) {
+        row.qty = length * breadth * height;
+        refresh_field("qty", row.name, "items");
+    }
 
-    return qty * duration * rate;
+    const multiplier = row.rotation_qty ? flt(row.rotation_qty) : 1;
+    return flt(row.qty) * flt(row.rate) * multiplier;
 }
 
 function recalculate_all_items(frm) {
