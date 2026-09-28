@@ -45,6 +45,8 @@ def make_sales_order(source_name, target_doc=None):
                 target_row.period = source_row.get("period")
                 target_row.is_job_type_item = source_row.get("is_job_type_item")
 
+    # Core maps amount as Qty x Rate; hire orders need Qty x Rate x Duration
+    recalculate_hire_amounts_so(target)
     return target
 
 
