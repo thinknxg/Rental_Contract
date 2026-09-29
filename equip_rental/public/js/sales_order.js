@@ -28,14 +28,14 @@ frappe.ui.form.on("Sales Order", {
 });
 
 function toggle_hire_item_grid(frm) {
+    // Grid column visibility is fixed by Property Setter now (Item Code,
+    // Item Name, Description, UOM, Length, Breadth, Height, Qty, Duration,
+    // Period, Unit Price, Amount, Contract Days, Excess Charge, Excess
+    // Period) and must NOT be toggled per deal type here -- doing so was
+    // overriding those settings on every refresh. Only labels change.
     const is_hire = ["Material Hire Order", "Contract Hire Order"].includes(frm.doc.custom_deal_type);
     const grid = frm.fields_dict.items.grid;
 
-    grid.update_docfield_property("item_code", "in_list_view", is_hire ? 0 : 1);
-    grid.update_docfield_property("delivery_date", "in_list_view", is_hire ? 0 : 1);
-    grid.update_docfield_property("job_no", "in_list_view", is_hire ? 1 : 0);
-    grid.update_docfield_property("contract_days", "in_list_view", is_hire ? 1 : 0);
-    grid.update_docfield_property("description", "in_list_view", is_hire ? 1 : 0);
     grid.update_docfield_property("description", "label", is_hire ? "Job Description" : "Description");
     grid.update_docfield_property("amount", "label", is_hire ? "Contract Amount" : "Amount");
 
