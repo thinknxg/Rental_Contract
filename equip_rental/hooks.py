@@ -177,4 +177,5 @@ doctype_js = {
     "Sales Order": "public/js/sales_order.js",
     "Rental Dispatch Note": "public/js/rental_dispatch_note.js",
     "JCR": "public/js/jcr.js",
+    "Sales Invoice": "public/js/sales_invoice_return.js",
 }
