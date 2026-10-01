@@ -5,33 +5,27 @@ from frappe.model.mapper import get_mapped_doc
 @frappe.whitelist()
 def make_dispatch_note(source_name, target_doc=None):
     def set_missing_values(source, target):
+        target.rental_contract = source.name
         target.customer = source.customer
-        # rental_contract is intentionally left unset here — per the TL's
-        # direction, going through a Rental Contract first is optional.
-        # Dispatch Note can be created directly from Sales Order.
+        target.company = source.company
 
         target.items = []
         for so_item in source.items:
-            equipment_list = frappe.get_all(
-                "Rental Equipment",
-                filters={"item": so_item.item_code, "status": "Available"},
-                fields=["name", "current_location"],
-                limit=int(so_item.qty),
-            )
+            pending = flt_qty = (so_item.qty or 0) - (so_item.delivered_qty or 0)
+            if pending <= 0:
+                continue
+            target.append("items", {
+                "item_code": so_item.item_code,
+                "item_name": so_item.item_name,
+                "qty": pending,
+                "rate": so_item.rate,
+                "amount": pending * (so_item.rate or 0),
+                "warehouse": so_item.get("warehouse"),
+                "sales_order": source.name,
+                "sales_order_item": so_item.name,
+            })
 
-            if len(equipment_list) < so_item.qty:
-                frappe.msgprint(
-                    f"Only {len(equipment_list)} of {int(so_item.qty)} requested units "
-                    f"available for item '{so_item.item_code}'. Add remaining rows manually.",
-                    indicator="orange",
-                    title="Partial Equipment Match",
-                )
-
-            for eq in equipment_list:
-                target.append("items", {
-                    "equipment": eq.name,
-                    "warehouse": eq.current_location,
-                })
+    from frappe.utils import flt
 
     target_doc = get_mapped_doc(
         "Sales Order",
@@ -39,7 +33,6 @@ def make_dispatch_note(source_name, target_doc=None):
         {
             "Sales Order": {
                 "doctype": "Rental Dispatch Note",
-                "field_map": {"name": "sales_order"},
                 "validation": {"docstatus": ["=", 1]},
             },
         },

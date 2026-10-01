@@ -36,13 +36,12 @@
   {
    "fieldname": "rental_contract",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Rental Contract",
-   "options": "Rental Contract",
-   "reqd": 1
+   "options": "Sales Order",
+   "reqd": 1,
+   "in_list_view": 1
   },
   {
-   "fetch_from": "rental_contract.customer",
    "fieldname": "customer",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -118,6 +117,14 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "fieldname": "return_delivery_note",
+   "fieldtype": "Link",
+   "label": "Return Delivery Note",
+   "no_copy": 1,
+   "options": "Delivery Note",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
