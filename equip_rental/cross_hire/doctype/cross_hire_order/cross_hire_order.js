@@ -55,6 +55,27 @@ frappe.ui.form.on("Cross Hire Order", {
 			});
 		}, __("View"));
 
+		if (frm.doc.purchase_order) {
+			frm.add_custom_button(__("Purchase Order"), () => {
+				frappe.set_route("Form", "Purchase Order", frm.doc.purchase_order);
+			}, __("View"));
+
+			frm.add_custom_button(__("Stock Ledger"), () => {
+				frappe.set_route("query-report", "Stock Ledger", {
+					voucher_no: frm.doc.purchase_order,
+				});
+			}, __("View"));
+		} else if (frm.doc.status !== "Cancelled") {
+			frm.add_custom_button(__("Purchase Order"), () => {
+				frappe.call({
+					method: "equip_rental.cross_hire.doctype.cross_hire_order.cross_hire_order.create_purchase_order",
+					args: { cross_hire_order: frm.doc.name }, freeze: true,
+				}).then((r) => {
+					if (r.message) frappe.set_route("Form", "Purchase Order", r.message);
+				});
+			}, __("Create"));
+		}
+
 		if (frm.doc.rental_contract) {
 			frm.add_custom_button(__("Re-Hire Contract"), () => {
 				frappe.set_route("Form", "Rental Contract", frm.doc.rental_contract);

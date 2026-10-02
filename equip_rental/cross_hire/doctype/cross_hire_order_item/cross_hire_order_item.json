@@ -8,6 +8,8 @@
  "engine": "InnoDB",
  "field_order": [
   "equipment_category",
+  "item_code",
+  "hire_item",
   "description",
   "vendor_plant_no",
   "qty",
@@ -26,6 +28,13 @@
   "item_status",
   "chi_link_sec",
   "rental_equipment",
+  "warehouse",
+  "serial_no",
+  "purchase_order_item",
+  "po_hire_item",
+  "purchase_receipt_item",
+  "received_qty",
+  "returned_qty",
   "cross_hire_requisition",
   "chi_link_cb",
   "meter_in",
@@ -48,6 +57,20 @@
    "label": "Category",
    "options": "Equipment Category",
    "reqd": 1
+  },
+  {
+   "description": "Stock item received into the yard at zero valuation",
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Hired-In Stock Item",
+   "options": "Item"
+  },
+  {
+   "description": "Service item the vendor's periodic charges are billed against",
+   "fieldname": "hire_item",
+   "fieldtype": "Link",
+   "label": "Hire Charge Item",
+   "options": "Item"
   },
   {
    "columns": 2,
@@ -174,6 +197,57 @@
    "fieldtype": "Link",
    "label": "Rental Equipment",
    "options": "Rental Equipment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "purchase_order_item",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "PO Equipment Row",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "po_hire_item",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "PO Hire Charge Row",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "purchase_receipt_item",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "PR Row",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "received_qty",
+   "fieldtype": "Float",
+   "label": "Received Qty",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "returned_qty",
+   "fieldtype": "Float",
+   "label": "Returned Qty",
    "read_only": 1
   },
   {

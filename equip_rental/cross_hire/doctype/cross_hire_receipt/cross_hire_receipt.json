@@ -17,6 +17,7 @@
   "vendor_delivery_note",
   "location",
   "received_by",
+  "purchase_receipt",
   "chr_items_sec",
   "items",
   "chr_other_sec",
@@ -78,13 +79,21 @@
   {
    "fieldname": "location",
    "fieldtype": "Link",
-   "label": "Received At",
+   "label": "Received Into Warehouse",
    "options": "Warehouse"
   },
   {
    "fieldname": "received_by",
    "fieldtype": "Data",
    "label": "Received By"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "purchase_receipt",
+   "fieldtype": "Link",
+   "label": "Purchase Receipt",
+   "options": "Purchase Receipt",
+   "read_only": 1
   },
   {
    "fieldname": "chr_items_sec",

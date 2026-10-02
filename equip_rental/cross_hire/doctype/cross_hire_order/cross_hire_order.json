@@ -22,6 +22,8 @@
   "is_open_ended",
   "off_hire_notice_days",
   "status",
+  "purchase_order",
+  "set_warehouse",
   "ch_use_sec",
   "hire_purpose",
   "rental_contract",
@@ -150,6 +152,20 @@
    "label": "Status",
    "options": "Draft\nOrdered\nOn Hire\nPartially Off-Hired\nOff Hired\nClosed\nCancelled",
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "set_warehouse",
+   "fieldtype": "Link",
+   "label": "Receiving Warehouse",
+   "options": "Warehouse"
   },
   {
    "fieldname": "ch_use_sec",

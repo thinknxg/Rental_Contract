@@ -6,6 +6,7 @@ from frappe.utils import flt, getdate, nowdate
 
 from equip_rental.utils.common import get_settings
 from equip_rental.utils.cross_hire import expected_cost
+from equip_rental.utils import cross_hire_stock as chs
 from equip_rental.utils.pricing import get_billable_units
 
 
@@ -32,7 +33,17 @@ class CrossHireOrder(Document):
                                     "off_hire_notice_days")
                 or settings.default_off_hire_notice_days or 0)
 
+        if not self.set_warehouse:
+            self.set_warehouse = (settings.cross_hire_warehouse
+                                  or settings.default_warehouse)
+
         for row in self.items:
+            if not row.item_code and row.equipment_category:
+                row.item_code = chs.ensure_stock_item(row.equipment_category)
+            if not row.hire_item:
+                row.hire_item = settings.cross_hire_item
+            if not row.warehouse:
+                row.warehouse = self.set_warehouse
             if not row.expected_from_date:
                 row.expected_from_date = self.from_date
             if not row.expected_off_hire_date and not self.is_open_ended:
@@ -108,6 +119,8 @@ class CrossHireOrder(Document):
 
     def on_submit(self):
         self.db_set("status", "Ordered")
+        if get_settings().auto_create_purchase_order and not self.purchase_order:
+            self.db_set("purchase_order", chs.make_purchase_order(self))
         for row in self.items:
             if row.cross_hire_requisition:
                 frappe.db.sql("""update `tabCross Hire Requisition Item`
@@ -121,6 +134,10 @@ class CrossHireOrder(Document):
                                     {"cross_hire_order": self.name, "docstatus": 1})
         if received:
             frappe.throw(_("Cancel the cross hire receipts first"))
+        if self.purchase_order and frappe.db.get_value(
+                "Purchase Order", self.purchase_order, "docstatus") == 1:
+            frappe.throw(_("Cancel Purchase Order {0} first").format(
+                self.purchase_order))
         self.db_set("status", "Cancelled")
 
     def set_status_from_items(self):
@@ -137,6 +154,8 @@ class CrossHireOrder(Document):
         else:
             status = "Ordered"
         self.db_set("status", status)
+        if status == "Off Hired":
+            chs.close_purchase_order(self)
         return status
 
     @frappe.whitelist()
@@ -177,6 +196,13 @@ class CrossHireOrder(Document):
 
         self.flags.ignore_validate_update_after_submit = True
         self.save(ignore_permissions=True)
+        self.reload()
+        self.calculate_totals()
+        for item in self.items:
+            item.db_set("expected_units", item.expected_units, update_modified=False)
+            item.db_set("expected_amount", item.expected_amount,
+                        update_modified=False)
+        chs.sync_po_hire_qty(self)
         frappe.msgprint(_("Hire extended to {0} on {1} line(s)").format(
             new_off_hire_date, changed), alert=True)
 
@@ -247,3 +273,17 @@ def make_off_hire_note(source_name, target_doc=None):
             "postprocess": update_item,
         },
     }, target_doc, post_process)
+
+
+@frappe.whitelist()
+def create_purchase_order(cross_hire_order):
+    """Raise the Purchase Order manually when auto-creation is switched off."""
+    order = frappe.get_doc("Cross Hire Order", cross_hire_order)
+    if order.docstatus != 1:
+        frappe.throw(_("Submit the Cross Hire Order first"))
+    if order.purchase_order:
+        frappe.throw(_("Purchase Order {0} already exists").format(
+            order.purchase_order))
+    name = chs.make_purchase_order(order)
+    order.db_set("purchase_order", name)
+    return name

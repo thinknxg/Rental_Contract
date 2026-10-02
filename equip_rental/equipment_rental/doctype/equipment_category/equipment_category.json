@@ -12,6 +12,7 @@
   "parent_category",
   "default_rate_card",
   "default_item",
+  "cross_hire_item",
   "cb1",
   "meter_type",
   "maintenance_interval",
@@ -47,6 +48,13 @@
    "fieldname": "default_item",
    "fieldtype": "Link",
    "label": "Default Billing Item",
+   "options": "Item"
+  },
+  {
+   "description": "Stock item used when receiving cross-hired units of this category. Auto-created if blank.",
+   "fieldname": "cross_hire_item",
+   "fieldtype": "Link",
+   "label": "Hired-In Stock Item",
    "options": "Item"
   },
   {

@@ -12,6 +12,8 @@
   "description",
   "condition_out",
   "meter_out",
+  "serial_no",
+  "warehouse",
   "damage_charged",
   "recoverable_from_customer",
   "rental_contract",
@@ -54,6 +56,18 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Meter Reading"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "From Warehouse",
+   "options": "Warehouse"
   },
   {
    "columns": 1,

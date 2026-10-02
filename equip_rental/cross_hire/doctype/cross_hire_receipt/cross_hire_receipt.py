@@ -4,6 +4,7 @@ from frappe.model.document import Document
 from frappe.utils import flt, getdate
 
 from equip_rental.utils.common import get_settings
+from equip_rental.utils import cross_hire_stock as chs
 
 
 class CrossHireReceipt(Document):
@@ -15,9 +16,17 @@ class CrossHireReceipt(Document):
         if getdate(self.receipt_datetime) < getdate(order.order_date):
             frappe.throw(_("The on-hire date cannot be before the order date"))
 
+        if not self.location:
+            self.location = chs.get_yard_warehouse(self.company, order)
+
+        for row in self.items:
+            if not row.serial_no and row.vendor_plant_no:
+                row.serial_no = row.vendor_plant_no
+
     def on_submit(self):
         order = frappe.get_doc("Cross Hire Order", self.cross_hire_order)
         on_hire_date = getdate(self.receipt_datetime)
+        stock_rows = []
 
         for row in self.items:
             item = self.get_order_item(order, row)
@@ -28,12 +37,31 @@ class CrossHireReceipt(Document):
                 item.db_set("vendor_plant_no", row.vendor_plant_no,
                             update_modified=False)
 
+            serial_no = chs.resolve_serial_no(
+                row, item.item_code,
+                fallback="{0}-{1}".format(self.name, row.idx))
+            if serial_no:
+                item.db_set("serial_no", serial_no, update_modified=False)
+            stock_rows.append((row, item, serial_no))
+
             if self.create_fleet_records and not item.rental_equipment:
-                equipment = self.create_equipment(order, item, row)
+                equipment = self.create_equipment(order, item, row, serial_no)
                 item.db_set("rental_equipment", equipment, update_modified=False)
                 row.db_set("rental_equipment", equipment, update_modified=False)
             elif item.rental_equipment:
                 self.reopen_equipment(order, item)
+
+        if get_settings().auto_create_purchase_receipt and not self.purchase_receipt:
+            order.reload()
+            receipt_name = chs.make_purchase_receipt(self, order, stock_rows)
+            if receipt_name:
+                self.db_set("purchase_receipt", receipt_name)
+                for _row, item, _serial in stock_rows:
+                    if item.rental_equipment:
+                        frappe.db.set_value("Rental Equipment",
+                                            item.rental_equipment,
+                                            "purchase_receipt", receipt_name,
+                                            update_modified=False)
 
         order.reload()
         order.set_status_from_items()
@@ -49,7 +77,7 @@ class CrossHireReceipt(Document):
         frappe.throw(_("Row {0}: no matching line on {1}").format(
             row.idx, self.cross_hire_order))
 
-    def create_equipment(self, order, item, row):
+    def create_equipment(self, order, item, row, serial_no=None):
         """A cross-hired unit becomes an ordinary fleet record for the hire period,
         so it can be dispatched, re-hired and invoiced like anything else."""
         settings = get_settings()
@@ -70,6 +98,8 @@ class CrossHireReceipt(Document):
         equipment.hire_available_upto = item.expected_off_hire_date \
             or order.expected_to_date
         equipment.current_location = self.location or settings.default_warehouse
+        equipment.stock_item = item.item_code
+        equipment.serial_no = serial_no
         equipment.current_meter = flt(row.meter_in)
         equipment.status = "Available"
         equipment.item = frappe.db.get_value("Equipment Category",
@@ -86,6 +116,10 @@ class CrossHireReceipt(Document):
         }, update_modified=False)
 
     def on_cancel(self):
+        if self.purchase_receipt and frappe.db.get_value(
+                "Purchase Receipt", self.purchase_receipt, "docstatus") == 1:
+            frappe.throw(_("Cancel Purchase Receipt {0} first").format(
+                self.purchase_receipt))
         order = frappe.get_doc("Cross Hire Order", self.cross_hire_order)
         for row in self.items:
             item = self.get_order_item_by_row(order, row)

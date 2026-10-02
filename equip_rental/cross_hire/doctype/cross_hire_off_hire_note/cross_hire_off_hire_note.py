@@ -4,6 +4,7 @@ from frappe.model.document import Document
 from frappe.utils import add_days, date_diff, flt, getdate
 
 from equip_rental.utils.common import get_settings
+from equip_rental.utils import cross_hire_stock as chs
 
 
 class CrossHireOffHireNote(Document):
@@ -17,6 +18,7 @@ class CrossHireOffHireNote(Document):
         self.check_notice_period(order)
         self.check_still_on_customer_contract()
         self.check_vendor_reference()
+        self.check_stock_position()
 
         self.total_damage_charged = flt(
             sum(flt(row.damage_charged) for row in self.items), 2)
@@ -50,6 +52,14 @@ class CrossHireOffHireNote(Document):
                       "Take the return from the customer first.").format(
                         row.idx, row.rental_equipment, live[0][0]))
 
+    def check_stock_position(self):
+        """The unit must be back in our custody before it goes to the vendor."""
+        if not self.actual_off_hire_date:
+            return
+        for row in self.items:
+            if row.rental_equipment:
+                chs.validate_in_stock(row.rental_equipment, row.warehouse)
+
     def check_vendor_reference(self):
         settings = get_settings()
         if (settings.require_vendor_offhire_reference and self.actual_off_hire_date
@@ -61,6 +71,7 @@ class CrossHireOffHireNote(Document):
     def on_submit(self):
         order = frappe.get_doc("Cross Hire Order", self.cross_hire_order)
         collected = bool(self.actual_off_hire_date)
+        returned_rows = []
 
         for row in self.items:
             item = self.get_order_item(order, row)
@@ -79,6 +90,7 @@ class CrossHireOffHireNote(Document):
                             update_modified=False)
                 item.db_set("meter_out", flt(row.meter_out), update_modified=False)
                 item.db_set("item_status", "Off Hired", update_modified=False)
+                returned_rows.append((row, item))
                 self.release_equipment(row, item)
             else:
                 item.db_set("item_status", "Off-Hire Requested", update_modified=False)
@@ -90,6 +102,19 @@ class CrossHireOffHireNote(Document):
 
             if flt(row.damage_charged):
                 self.raise_damage_claim(order, row, item)
+
+        if (returned_rows and get_settings().auto_create_purchase_return
+                and not self.purchase_return):
+            order.reload()
+            return_name = chs.make_purchase_return(self, order, returned_rows)
+            if return_name:
+                self.db_set("purchase_return", return_name)
+                for _row, item in returned_rows:
+                    if item.rental_equipment:
+                        frappe.db.set_value("Rental Equipment",
+                                            item.rental_equipment,
+                                            "purchase_return", return_name,
+                                            update_modified=False)
 
         order.reload()
         status = order.set_status_from_items()
@@ -128,6 +153,10 @@ class CrossHireOffHireNote(Document):
         return None
 
     def on_cancel(self):
+        if self.purchase_return and frappe.db.get_value(
+                "Purchase Receipt", self.purchase_return, "docstatus") == 1:
+            frappe.throw(_("Cancel Purchase Return {0} first").format(
+                self.purchase_return))
         order = frappe.get_doc("Cross Hire Order", self.cross_hire_order)
         for row in self.items:
             item = self.get_order_item(order, row)

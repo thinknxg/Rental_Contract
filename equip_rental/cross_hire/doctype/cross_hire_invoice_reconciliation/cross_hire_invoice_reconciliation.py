@@ -109,14 +109,18 @@ class CrossHireInvoiceReconciliation(Document):
         invoice.cost_center = order.cost_center
 
         for row in payable_lines:
+            order_item = next((i for i in order.items if i.name == row.order_row), None)
             line = invoice.append("items", {})
-            line.item_code = item_code
+            line.item_code = (order_item and order_item.hire_item) or item_code
             line.qty = 1
             line.rate = flt(row.approved_amount)
             line.cost_center = order.cost_center
             line.project = order.project
             if settings.default_cross_hire_expense_account:
                 line.expense_account = settings.default_cross_hire_expense_account
+            if order_item and order_item.po_hire_item and order.purchase_order:
+                line.purchase_order = order.purchase_order
+                line.po_detail = order_item.po_hire_item
             line.description = _("Cross hire {0}: {1} {2} to {3}").format(
                 order.name, row.description, row.charge_from, row.charge_upto)
 

@@ -17,6 +17,7 @@
   "requested_collection_date",
   "actual_off_hire_date",
   "vendor_off_hire_reference",
+  "purchase_return",
   "choh_items_sec",
   "items",
   "choh_other_sec",
@@ -88,6 +89,14 @@
    "fieldname": "vendor_off_hire_reference",
    "fieldtype": "Data",
    "label": "Vendor Off-Hire Reference"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "purchase_return",
+   "fieldtype": "Link",
+   "label": "Purchase Return",
+   "options": "Purchase Receipt",
+   "read_only": 1
   },
   {
    "fieldname": "choh_items_sec",

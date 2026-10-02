@@ -36,9 +36,12 @@
   "cross_hire_order_item",
   "vendor_plant_no",
   "cross_hire_rate_basis",
+  "stock_item",
   "cb_ch2",
   "hire_available_from",
   "hire_available_upto",
+  "purchase_receipt",
+  "purchase_return",
   "meter_sec",
   "meter_type",
   "current_meter",
@@ -158,9 +161,10 @@
    "options": "currency"
   },
   {
+   "description": "For stock-tracked units this is the live stock location",
    "fieldname": "current_location",
    "fieldtype": "Link",
-   "label": "Current Location",
+   "label": "Warehouse / Current Location",
    "options": "Warehouse"
   },
   {
@@ -253,6 +257,14 @@
    "options": "Hour\nDay\nWeek\nMonth"
   },
   {
+   "description": "The stock item this unit was received against",
+   "fieldname": "stock_item",
+   "fieldtype": "Link",
+   "label": "Hired-In Stock Item",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
    "fieldname": "cb_ch2",
    "fieldtype": "Column Break"
   },
@@ -267,6 +279,20 @@
    "fieldname": "hire_available_upto",
    "fieldtype": "Date",
    "label": "Must Go Back By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_receipt",
+   "fieldtype": "Link",
+   "label": "Purchase Receipt",
+   "options": "Purchase Receipt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_return",
+   "fieldtype": "Link",
+   "label": "Purchase Return",
+   "options": "Purchase Receipt",
    "read_only": 1
   },
   {

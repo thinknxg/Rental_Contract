@@ -43,3 +43,5 @@ equip_rental.patches.v1_0.add_jcr_to_sales_invoice_item
 equip_rental.patches.v1_0.show_uom_in_sales_invoice_item_grid
 equip_rental.patches.v1_0.place_uom_after_qty_in_sales_invoice_item
 equip_rental.patches.v1_0.place_description_after_item_in_sales_invoice_item
+equip_rental.patches.v1_2.add_cross_hire_custom_fields
+equip_rental.patches.v1_2.setup_cross_hire_stock

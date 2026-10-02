@@ -11,6 +11,7 @@
   "equipment_category",
   "description",
   "vendor_plant_no",
+  "serial_no",
   "condition_in",
   "meter_in",
   "rental_equipment",
@@ -46,6 +47,12 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Vendor Plant No"
+  },
+  {
+   "description": "Defaults to the vendor plant number",
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No"
   },
   {
    "columns": 2,

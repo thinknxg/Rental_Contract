@@ -53,7 +53,19 @@
   "portal_enquiry_recipient",
   "alerts_sec",
   "document_expiry_reminder_days",
-  "return_due_reminder_days"
+  "return_due_reminder_days",
+  "cross_hire_item_group",
+  "cross_hire_warehouse",
+  "cross_hire_site_warehouse",
+  "cross_hire_stock_sec",
+  "auto_create_purchase_order",
+  "auto_create_purchase_receipt",
+  "auto_create_purchase_return",
+  "close_po_on_off_hire",
+  "cb_chs",
+  "track_cross_hire_serial_no",
+  "transfer_stock_on_dispatch",
+  "block_offhire_without_stock"
  ],
  "fields": [
   {
@@ -331,6 +343,82 @@
    "fieldname": "return_due_reminder_days",
    "fieldtype": "Int",
    "label": "Return Due Reminder (Days)"
+  },
+  {
+   "description": "Item Group for auto-created stock items representing hired-in equipment",
+   "fieldname": "cross_hire_item_group",
+   "fieldtype": "Link",
+   "label": "Hired-In Item Group",
+   "options": "Item Group"
+  },
+  {
+   "description": "Where hired-in equipment is received and sits when not deployed",
+   "fieldname": "cross_hire_warehouse",
+   "fieldtype": "Link",
+   "label": "Cross Hire Yard Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "description": "Stock is transferred here while the unit is out on a customer site",
+   "fieldname": "cross_hire_site_warehouse",
+   "fieldtype": "Link",
+   "label": "Deployed / On-Site Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "cross_hire_stock_sec",
+   "fieldtype": "Section Break",
+   "label": "Cross Hire Stock & Procurement"
+  },
+  {
+   "default": "1",
+   "description": "Submitting a Cross Hire Order raises the matching ERPNext Purchase Order",
+   "fieldname": "auto_create_purchase_order",
+   "fieldtype": "Check",
+   "label": "Create Purchase Order on Submit"
+  },
+  {
+   "default": "1",
+   "description": "Hired-in equipment is received at zero valuation - quantity only, no inventory value",
+   "fieldname": "auto_create_purchase_receipt",
+   "fieldtype": "Check",
+   "label": "Create Purchase Receipt on Receipt"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_purchase_return",
+   "fieldtype": "Check",
+   "label": "Create Purchase Return on Off-Hire"
+  },
+  {
+   "default": "1",
+   "fieldname": "close_po_on_off_hire",
+   "fieldtype": "Check",
+   "label": "Close Purchase Order on Full Off-Hire"
+  },
+  {
+   "fieldname": "cb_chs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "description": "Each physical unit becomes a Serial No, using the vendor's plant number",
+   "fieldname": "track_cross_hire_serial_no",
+   "fieldtype": "Check",
+   "label": "Track Hired-In Units by Serial No"
+  },
+  {
+   "default": "1",
+   "description": "Material Transfer between the yard and the on-site warehouse as units move",
+   "fieldname": "transfer_stock_on_dispatch",
+   "fieldtype": "Check",
+   "label": "Transfer Stock on Dispatch and Return"
+  },
+  {
+   "default": "1",
+   "fieldname": "block_offhire_without_stock",
+   "fieldtype": "Check",
+   "label": "Block Off-Hire When Unit Is Not In Stock"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -338,7 +426,7 @@
  "issingle": 1,
  "istable": 0,
  "links": [],
- "modified": "2026-01-01 00:00:00.000000",
+ "modified": "2026-10-02 12:54:21.171030",
  "modified_by": "Administrator",
  "module": "Equipment Rental",
  "name": "Equipment Rental Settings",
