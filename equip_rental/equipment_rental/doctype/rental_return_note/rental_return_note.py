@@ -170,6 +170,11 @@ class RentalReturnNote(Document):
         se.submit()
 
 
+def _set_direct_deal_type(source, target, source_parent=None):
+    """Direct Sales Invoice from a Return Note: Deal Type = Direct Invoice."""
+    target.custom_deal_type = "Direct Invoice (Damage/Scrap/Lost)"
+
+
 @frappe.whitelist()
 def make_sales_invoice(source_name, target_doc=None):
     from frappe.model.mapper import get_mapped_doc
@@ -187,6 +192,7 @@ def make_sales_invoice(source_name, target_doc=None):
             "doctype": "Sales Invoice",
             "field_map": {"customer": "customer", "company": "company"},
             "validation": {"docstatus": ["=", 1]},
+            "postprocess": _set_direct_deal_type,
         },
         "Rental Return Note Item": {
             "doctype": "Sales Invoice Item",
