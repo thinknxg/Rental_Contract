@@ -1,0 +1,36 @@
+html[data-theme="light"],
+html[data-theme="light"] body {
+  --bg: #f6f7f9;
+  --card: #fff;
+  --fg: #1f2933;
+  --line: #e3e7ec;
+  --mut: #697586;
+  --pri: #1d4ed8;
+}
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  --bg: #12161c;
+  --card: #1a2029;
+  --fg: #e6e9ee;
+  --line: #2a313c;
+  --mut: #98a2b3;
+}
+
+.er-portal-theme {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--card, #fff);
+  color: var(--fg, #1f2933);
+  border: 1px solid var(--line, #e3e7ec);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}

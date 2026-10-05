@@ -1,0 +1,17 @@
+.er-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-md, 6px);
+  color: var(--text-muted);
+}
+.er-theme-btn:hover {
+  background: var(--control-bg);
+  color: var(--text-color);
+}
+.er-theme-icon {
+  font-size: 16px;
+  line-height: 1;
+}

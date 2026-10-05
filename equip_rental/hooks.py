@@ -7,7 +7,11 @@ app_license = "MIT"
 required_apps = ["frappe/erpnext"]
 
 # ------------------------------------------------------------------ assets
-app_include_css = "/assets/equip_rental/css/equip_rental.css"
+app_include_css = [
+    "/assets/equip_rental/css/equip_rental.css",
+    "/assets/equip_rental/css/theme_toggle.css",
+]
+app_include_js = ["/assets/equip_rental/js/theme_toggle.js"]
 web_include_css = "/assets/equip_rental/css/rental_portal.css"
 web_include_js = "/assets/equip_rental/js/rental_portal.js"
 
