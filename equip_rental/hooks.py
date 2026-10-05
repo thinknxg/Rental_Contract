@@ -51,6 +51,23 @@ fixtures = [
                 "Quotation-customer_trn",
                 "Quotation Item-rotation_qty",
                 "Quotation Item-period",
+                "Quotation Item-is_job_type_item",
+                "Quotation Item-excess_period",
+                "Quotation Item-excess_charge",
+                "Quotation Item-contract_days",
+                "Quotation Item-job_no",
+                "Quotation Item-custom_remarks",
+                "Quotation Item-custom_site",
+                "Quotation Item-custom_start_date",
+                "Quotation Item-custom_end_date",
+                "Quotation Item-custom_period",
+                "Quotation Item-custom_duration",
+                "Quotation Item-custom_calculated_volume",
+                "Quotation Item-custom_no_of_locations",
+                "Quotation Item-custom_length",
+                "Quotation Item-custom_breadth",
+                "Quotation Item-custom_height",
+                "Quotation Item-custom_rate_type",
                 "Lead-custom_deal_type",
                 "Quotation-custom_deal_type",
                 "Sales Order-custom_deal_type",
@@ -86,7 +103,11 @@ fixtures = [
                 "JCR Item-custom_dismantle_date",
             ]]
         ]
-    }
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [["doc_type", "=", "Quotation Item"]],
+    },
 ]
 
 # ------------------------------------------------------------------ overrides
