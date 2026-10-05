@@ -18,6 +18,7 @@ def make_dispatch_note(source_name, target_doc=None):
                 "item_code": so_item.item_code,
                 "item_name": so_item.item_name,
                 "qty": pending,
+                "uom": so_item.uom or so_item.stock_uom,
                 "rate": so_item.rate,
                 "amount": pending * (so_item.rate or 0),
                 "warehouse": so_item.get("warehouse"),
